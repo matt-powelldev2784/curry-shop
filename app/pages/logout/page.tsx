@@ -1,8 +1,12 @@
-import { signOut } from '@/app/api/auth/auth'
+import { auth, signOut } from '@/app/api/auth/auth'
+import { redirect } from 'next/navigation'
 
-export default function Login() {
+export default async function Login() {
+  const session = await auth()
+  if (!session?.user) redirect('/pages/login')
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="flex flex-col items-center">
       <p>Logout Page</p>
       <form
         action={async () => {
@@ -10,7 +14,9 @@ export default function Login() {
           await signOut()
         }}
       >
-        <button type="submit">Sign Out</button>
+        <button type="submit" className="bg-red-500 p-2">
+          Sign Out
+        </button>
       </form>
     </div>
   )
