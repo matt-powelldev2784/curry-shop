@@ -1,7 +1,8 @@
 import { auth, signOut } from '@/app/api/auth/auth'
+import WithAuth from '@/app/api/auth/WithAuth'
 import { redirect } from 'next/navigation'
 
-export default async function Login() {
+const Logout = async () => {
   const session = await auth()
   if (!session?.user) redirect('/pages/login')
 
@@ -21,3 +22,5 @@ export default async function Login() {
     </div>
   )
 }
+
+export default WithAuth(Logout)
