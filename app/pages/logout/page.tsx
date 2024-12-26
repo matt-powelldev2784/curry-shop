@@ -14,7 +14,7 @@ export default async function Login() {
           await signOut()
         }}
       >
-        <button type="submit" className="bg-red-500 p-2">
+        <button type="submit" className="bg-blue-500 p-2">
           Sign Out
         </button>
       </form>
