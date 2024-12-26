@@ -1,11 +1,7 @@
-import { auth, signOut } from '@/app/api/auth/auth'
+import { signOut } from '@/app/api/auth/auth'
 import WithAuth from '@/app/api/auth/WithAuth'
-import { redirect } from 'next/navigation'
 
 const Logout = async () => {
-  const session = await auth()
-  if (!session?.user) redirect('/pages/login')
-
   return (
     <div className="flex flex-col items-center">
       <p>Logout Page</p>
