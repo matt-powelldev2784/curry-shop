@@ -14,14 +14,14 @@ const urlFor = (source: SanityImageSource) => {
 
 const options = { next: { revalidate: 30 } }
 
-type MenuItemParams = { params: { slug: string } }
+type MenuItemParams = { params: Promise<{ slug: string }> }
 
-const MenuItem = async ({ params }: MenuItemParams) => {
-  const { slug } = await params
+const MenuItem = async (props: MenuItemParams) => {
+  const params = await props.params
 
   const menuItem = await sanityClient.fetch<SanityDocument>(
     MENU_ITEM_QUERY,
-    { slug },
+    params,
     options
   )
 
