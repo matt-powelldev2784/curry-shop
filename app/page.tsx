@@ -10,6 +10,10 @@ export default function Home() {
       <button>
         <Link href="/pages/logout">Goto Logout Page</Link>
       </button>
+
+      <button>
+        <Link href="/pages/menu">Goto Menu Page</Link>
+      </button>
     </div>
   )
 }
