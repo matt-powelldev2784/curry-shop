@@ -8,7 +8,7 @@ const CloseMenu = () => {
 
   return (
     <button
-      className="absolute top-3 right-4 bg-twPink"
+      className="absolute top-3 right-4 bg-twPink z-20"
       onClick={() => router.back()}
     >
       <Image src={closeIcon} width={25} height={25} alt="Close" />

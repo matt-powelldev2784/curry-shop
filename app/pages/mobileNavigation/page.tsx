@@ -4,10 +4,10 @@ import CloseMenu from '@/app/components/navigation/mobileNavigation/CloseMenu'
 
 const MobileNavigation = () => {
   return (
-    <nav className="sm:flex md:hidden">
+    <nav className="sm:flex md:hidden w-full h-full min-h-screen bg-twPink">
       <CloseMenu />
 
-      <ul className="w-full h-full min-h-screen flexCol items-center justify-center gap-6 text-white font-bold bg-twPink">
+      <ul className="-translate-y-20 w-full flexCol items-center justify-center gap-6 text-white font-bold ">
         <li>
           <Link href="/pages/menu">FOOD MENU</Link>
         </li>
