@@ -20,7 +20,7 @@ export default {
       },
       screens: {
         sm: '0px',
-        md: '600px',
+        md: '700px',
         lg: '1100px',
       },
       fontFamily: {

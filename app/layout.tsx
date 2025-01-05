@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import localFont from 'next/font/local'
-import NavigationBar from './components/navigation/NavigationBar'
+import DesktopNavigation from './components/navigation/desktopNavigation/DesktopNavigation'
+import MobileNavigation from './components/navigation/mobileNavigation/MobileNavigation'
 
 const brandonGrotFont = localFont({
   src: [
@@ -36,7 +37,8 @@ export default function RootLayout({
       <body
         className={`${brandonGrotFont.variable} antialiased font-brandon text-base`}
       >
-        <NavigationBar />
+        <DesktopNavigation />
+        <MobileNavigation />
         {children}
       </body>
     </html>

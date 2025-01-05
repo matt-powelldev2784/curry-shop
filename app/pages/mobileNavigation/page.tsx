@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import CloseMenu from '@/app/components/navigation/CloseMenu'
+import CloseMenu from '@/app/components/navigation/mobileNavigation/CloseMenu'
 
 const MobileNavigation = () => {
   return (
