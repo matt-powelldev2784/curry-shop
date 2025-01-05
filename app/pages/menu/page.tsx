@@ -14,7 +14,7 @@ const options = { next: { revalidate: 30 } }
    )
 
    return (
-     <main className="container mx-auto min-h-screen max-w-3xl p-8">
+     <section className="container mx-auto min-h-screen max-w-3xl p-8">
        <h1 className="text-4xl font-bold mb-8">Menu Items</h1>
        <ul className="flex flex-col gap-y-4">
          {menuItems.map((menuItem) => (
@@ -31,7 +31,7 @@ const options = { next: { revalidate: 30 } }
            </li>
          ))}
        </ul>
-     </main>
+     </section>
    )
  }
 

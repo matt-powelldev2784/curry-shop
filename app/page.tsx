@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center">
+    <main className="flex flex-col items-center min-w-[320px]">
       <button>
         <Link href="/pages/login">Goto Login Page</Link>
       </button>
@@ -14,6 +14,6 @@ export default function Home() {
       <button>
         <Link href="/pages/menu">Goto Menu Page</Link>
       </button>
-    </div>
+    </main>
   )
 }
