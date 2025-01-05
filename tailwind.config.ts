@@ -1,5 +1,9 @@
 import type { Config } from "tailwindcss";
 
+import type { PluginAPI } from 'tailwindcss/types/config'
+
+type TailwindUtilities = PluginAPI
+
 export default {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -19,7 +23,40 @@ export default {
         md: '600px',
         lg: '1100px',
       },
+      fontFamily: {
+        brandon: ['var(--font-brandon)'],
+      },
+      fontWeight: {
+        normal: '400',
+        bold: '700',
+        extraBold: '900',
+      },
+      fontSize: {
+        base: '18px',
+        lg: '20px',
+        xl: '22px',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    ({ addUtilities }: TailwindUtilities) => {
+      addUtilities({
+        '.flexCol': {
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
+        },
+        '.flexRow': {
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'row',
+        },
+        '.clipPathCircle': {
+          clipPath: 'circle(50% at 50% 50%)',
+        },
+      })
+    },
+  ],
 } satisfies Config

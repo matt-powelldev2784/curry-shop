@@ -1,23 +1,27 @@
 import Image from 'next/image'
 import React from 'react'
 import CurryClubLogo from '../../assets/curry_club_logo.png'
+import Link from 'next/link'
 
 const NavigationBar = () => {
   return (
-    <nav className="bg-twPink w-full h-14 flex items-stretch justify-between">
-      <Image
-        src={CurryClubLogo}
-        style={{ objectFit: 'contain' }}
-        alt="Curry Club Logo"
-        sizes="(max-width: 600px) 200px, 300px"
-        width={250}
-        height={64}
-        className="m-2"
-      />
+    <nav className="bg-twPink w-full flex items-center justify-between">
+      <Link
+        href="/"
+        className="m-1 ml-4 sm:h-[39px] w-[200px] relative md:w-[250px] md:h-[56px]"
+      >
+        <Image
+          src={CurryClubLogo}
+          style={{ objectFit: 'contain' }}
+          alt="Curry Club Logo"
+          fill
+        />
+      </Link>
 
-      <ul className="h-14 flex flex-row">
-        <li>Menu</li>
-        <li>Login</li>
+      <ul className="m-1 mr-4 sm:h-[39px] relative md:h-[56px] flexRow gap-6 text-white font-bold">
+        <li>MENU</li>
+        <li>LOGIN</li>
+        <li>ADMIN CONSOLE</li>
       </ul>
     </nav>
   )
