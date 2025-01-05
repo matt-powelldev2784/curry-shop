@@ -4,7 +4,7 @@ import CloseMenu from '@/app/components/navigation/mobileNavigation/CloseMenu'
 
 const MobileNavigation = () => {
   return (
-    <nav>
+    <nav className="sm:flex md:hidden">
       <CloseMenu />
 
       <ul className="w-full h-full min-h-screen flexCol items-center justify-center gap-6 text-white font-bold bg-twPink">
