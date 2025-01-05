@@ -3,6 +3,7 @@ import React from 'react'
 import CurryClubLogo from '../../assets/curry_club_logo.png'
 import Link from 'next/link'
 import DesktopButtons from './DesktopButtons'
+import MobileNavigation from './MobileNavigation'
 
 const NavigationBar = () => {
   return (
@@ -20,6 +21,7 @@ const NavigationBar = () => {
       </Link>
 
       <DesktopButtons />
+      <MobileNavigation />
     </nav>
   )
 }
