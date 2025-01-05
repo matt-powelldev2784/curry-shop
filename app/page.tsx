@@ -1,10 +1,8 @@
 import Link from 'next/link'
-import NavigationBar from './components/navigation/NavigationBar'
 
 export default function Home() {
   return (
     <main className="flex flex-col items-center min-w-[320px]">
-      <NavigationBar />
       <button>
         <Link href="/pages/login">Goto Login Page</Link>
       </button>
