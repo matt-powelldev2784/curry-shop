@@ -7,7 +7,6 @@ import Link from 'next/link'
 type FoodMenuItemProps = {
   name: string
   price: number
-  menuItemType: string
   imageUrl: string
   slug: { current: string }
 }
@@ -15,14 +14,13 @@ type FoodMenuItemProps = {
 export const FoodMenuItem = ({
   imageUrl,
   name,
-  menuItemType,
   price,
   slug,
 }: FoodMenuItemProps) => {
   console.log('slug', slug.current)
 
   return (
-    <article className="flex sm:mx-2 md:mx-8 h-[130px] items-center rounded-l-xl rounded-r-xl border-2 border-black/25 bg-secondaryWhite">
+    <article className="flex h-[130px] items-center rounded-l-xl rounded-r-xl border-2 border-black/25 bg-secondaryWhite">
       <div className="flex h-full w-8/12 flex-col justify-between p-3">
         <p className="sm:text-base md:text-lg">{name}</p>
         <p className="md:text-md">
