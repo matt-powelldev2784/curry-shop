@@ -41,6 +41,7 @@ const Menu = async () => {
           return (
             <FoodMenuItem
               key={menuItem._id}
+              id={menuItem._id}
               name={menuItem.name}
               price={menuItem.price}
               imageUrl={imageUrl}
@@ -59,6 +60,7 @@ const Menu = async () => {
           return (
             <FoodMenuItem
               key={menuItem._id}
+              id={menuItem._id}
               name={menuItem.name}
               price={menuItem.price}
               imageUrl={imageUrl}
@@ -77,6 +79,7 @@ const Menu = async () => {
           return (
             <FoodMenuItem
               key={menuItem._id}
+              id={menuItem._id}
               name={menuItem.name}
               price={menuItem.price}
               imageUrl={imageUrl}
@@ -95,6 +98,7 @@ const Menu = async () => {
           return (
             <FoodMenuItem
               key={menuItem._id}
+              id={menuItem._id}
               name={menuItem.name}
               price={menuItem.price}
               imageUrl={imageUrl}

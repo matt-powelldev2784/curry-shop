@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useCartContext } from '@/app/context/CartContext'
 
 type FoodMenuItemProps = {
+  id: string
   name: string
   price: number
   imageUrl: string
@@ -13,13 +14,17 @@ type FoodMenuItemProps = {
 }
 
 export const FoodMenuItem = ({
-  imageUrl,
+  id,
   name,
   price,
+  imageUrl,
   slug,
 }: FoodMenuItemProps) => {
-  const { cartItems } = useCartContext()
-  console.log('cartItems', cartItems)
+  const { addToCart } = useCartContext()
+
+  const onSelectMenuItem = () => {
+    addToCart({ id, name, quantity: 1, price })
+  }
 
   return (
     <article className="flex h-[130px] items-center rounded-l-xl rounded-r-xl border-2 border-black/25 bg-secondaryWhite">
@@ -35,7 +40,7 @@ export const FoodMenuItem = ({
           <button
             type="button"
             className="bg-twPink text-secondaryWhite px-2 py-1 cursor-pointer bottom-0 rounded text-white text-base"
-            onClick={() => {}}
+            onClick={onSelectMenuItem}
           >
             Select
           </button>
