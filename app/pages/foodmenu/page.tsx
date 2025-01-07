@@ -29,8 +29,8 @@ const Menu = async () => {
   const drinks = filterMenuItemsByType('drinks')
 
   return (
-    <section className="container mx-auto min-h-screen max-w-3xl min-w-[320px] mb-20">
-      <div className="flex flex-col gap-y-2 sm:mx-2 md:mx-8 mt-2">
+    <section className="flexCol w-full min-w-[320px] pb-20 bg-twLightGrey">
+      <div className="flexCol w-full gap-y-2 sm:px-3 md:mx-8 mt-2">
         <h1 className="text-3xl font-bold translate-y-1 translate-x-1">
           Starters
         </h1>
@@ -51,7 +51,7 @@ const Menu = async () => {
         })}
       </div>
 
-      <div className="flex flex-col gap-y-2 sm:mx-2 md:mx-8 mt-4">
+      <div className="flexCol w-full gap-y-2 sm:px-3 md:mx-8 mt-2">
         <h1 className="text-3xl font-bold translate-y-1">Mains</h1>
         {mains.map((menuItem) => {
           const imageUrl = urlFor(menuItem.image)?.width(550).height(310).url()
@@ -70,7 +70,7 @@ const Menu = async () => {
         })}
       </div>
 
-      <div className="flex flex-col gap-y-2 sm:mx-2 md:mx-8 mt-4">
+      <div className="flexCol w-full gap-y-2 sm:px-3 md:mx-8 mt-2">
         <h1 className="text-3xl font-bold translate-y-1">Sides</h1>
         {sides.map((menuItem) => {
           const imageUrl = urlFor(menuItem.image)?.width(550).height(310).url()
@@ -89,7 +89,7 @@ const Menu = async () => {
         })}
       </div>
 
-      <div className="flex flex-col gap-y-2 sm:mx-2 md:mx-8 mt-4">
+      <div className="flexCol w-full gap-y-2 sm:px-3 md:mx-8 mt-2">
         <h1 className="text-3xl font-bold translate-y-1">Drinks</h1>
         {drinks.map((menuItem) => {
           const imageUrl = urlFor(menuItem.image)?.width(550).height(310).url()

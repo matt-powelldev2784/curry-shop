@@ -27,7 +27,7 @@ export const FoodMenuItem = ({
   }
 
   return (
-    <article className="flex h-[130px] items-center rounded-l-xl rounded-r-xl border-2 border-black/25 bg-secondaryWhite">
+    <article className="flex h-[130px] w-full max-w-[600px] items-center rounded-l-xl rounded-r-xl border-2 border-black/25 bg-twWhite">
       <div className="flex h-full w-8/12 flex-col justify-between p-3">
         <p className="sm:text-base md:text-lg">{name}</p>
         <p className="md:text-md">

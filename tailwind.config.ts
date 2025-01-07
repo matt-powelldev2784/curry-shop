@@ -16,7 +16,8 @@ export default {
         twPink: '#d70567',
         twWhite: '#ffffff',
         twBlack: ' #0e1207',
-        twGrey: '#cfd7d7',
+        twLightGrey: '#F3F5F5',
+        twDarkGrey: '#CFD7D7',
       },
       screens: {
         sm: '0px',
