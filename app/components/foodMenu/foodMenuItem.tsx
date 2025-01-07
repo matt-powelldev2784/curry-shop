@@ -43,7 +43,7 @@ export const FoodMenuItem = ({
       <div className="relative h-full sm:w-8/12 md:w-4/12 ">
         <Link
           className="absolute right-2 bottom-2 z-10 cursor-pointer rounded-lg bg-twPink p-1 text-center text-sm text-white"
-          href={`/pages/menu/${slug.current}`}
+          href={`/pages/foodmenu/${slug.current}`}
         >
           <Image src={infoIcon} width={25} height={25} alt="" />
         </Link>

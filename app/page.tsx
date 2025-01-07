@@ -12,7 +12,7 @@ export default function Home() {
       </button>
 
       <button>
-        <Link href="/pages/menu">Goto Menu Page</Link>
+        <Link href="/pages/foodmenu">Goto Menu Page</Link>
       </button>
     </main>
   )
