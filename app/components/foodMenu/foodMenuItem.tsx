@@ -47,7 +47,7 @@ export const FoodMenuItem = ({
         </div>
       </div>
 
-      <div className="relative h-full sm:w-8/12 md:w-4/12 ">
+      <div className="relative h-full sm:w-8/12 md:w-4/12 max-w-[200px] ">
         <Link
           className="absolute right-2 bottom-2 z-10 cursor-pointer rounded-lg bg-twPink p-1 text-center text-sm text-white"
           href={`/pages/foodmenu/${slug.current}`}
