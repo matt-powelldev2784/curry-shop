@@ -21,8 +21,8 @@ export default {
       },
       screens: {
         sm: '0px',
-        md: '700px',
-        lg: '1100px',
+        md: '1000px',
+        lg: '1200px',
       },
       fontFamily: {
         brandon: ['var(--font-brandon)'],
