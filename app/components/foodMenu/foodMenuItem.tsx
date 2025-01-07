@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import infoIcon from '@/public/info.png'
 import Link from 'next/link'
+import { useCartContext } from '@/app/context/CartContext'
 
 type FoodMenuItemProps = {
   name: string
@@ -17,7 +18,8 @@ export const FoodMenuItem = ({
   price,
   slug,
 }: FoodMenuItemProps) => {
-  console.log('slug', slug.current)
+  const { cartItems } = useCartContext()
+  console.log('cartItems', cartItems)
 
   return (
     <article className="flex h-[130px] items-center rounded-l-xl rounded-r-xl border-2 border-black/25 bg-secondaryWhite">

@@ -4,6 +4,7 @@ import localFont from 'next/font/local'
 import DesktopNavigation from './components/navigation/desktopNavigation/DesktopNavigation'
 import MobileNavigation from './components/navigation/mobileNavigation/MobileNavigation'
 import { ReactNode } from 'react'
+import { CartProvider } from './context/CartContext'
 
 const brandonGrotFont = localFont({
   src: [
@@ -38,9 +39,11 @@ const RootLayout = ({ children }: Readonly<RootLayoutProps>) => {
       <body
         className={`${brandonGrotFont.variable} antialiased font-brandon text-base`}
       >
-        <DesktopNavigation />
-        <MobileNavigation />
-        {children}
+        <CartProvider>
+          <DesktopNavigation />
+          <MobileNavigation />
+          {children}
+        </CartProvider>
       </body>
     </html>
   )

@@ -13,8 +13,6 @@ const urlFor = (source: SanityImageSource) => {
   return builder.image(source)
 }
 
-
-
 const Menu = async () => {
   const menuItems = await sanityClient.fetch<SanityDocument[]>(
     MENU_ITEMS_QUERY,
