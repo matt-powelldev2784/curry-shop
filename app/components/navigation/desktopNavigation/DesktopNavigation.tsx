@@ -21,7 +21,7 @@ const DesktopNavigation = () => {
       <nav>
         <ul className="m-1 mr-4 sm:h-[39px] md:h-[56px] flexRow gap-6 text-white font-bold">
           <li>
-            <Link href="/pages/menu">FOOD MENU</Link>
+            <Link href="/pages/foodmenu">FOOD MENU</Link>
           </li>
 
           <li>

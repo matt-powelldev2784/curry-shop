@@ -16,12 +16,13 @@ export default {
         twPink: '#d70567',
         twWhite: '#ffffff',
         twBlack: ' #0e1207',
-        twGrey: '#cfd7d7',
+        twLightGrey: '#F3F5F5',
+        twDarkGrey: '#CFD7D7',
       },
       screens: {
         sm: '0px',
-        md: '700px',
-        lg: '1100px',
+        md: '1000px',
+        lg: '1200px',
       },
       fontFamily: {
         brandon: ['var(--font-brandon)'],
@@ -32,6 +33,7 @@ export default {
         extraBold: '900',
       },
       fontSize: {
+        sm: '16px',
         base: '18px',
         lg: '20px',
         xl: '22px',

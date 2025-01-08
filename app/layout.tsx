@@ -3,6 +3,8 @@ import './globals.css'
 import localFont from 'next/font/local'
 import DesktopNavigation from './components/navigation/desktopNavigation/DesktopNavigation'
 import MobileNavigation from './components/navigation/mobileNavigation/MobileNavigation'
+import { ReactNode } from 'react'
+import { CartProvider } from './context/CartContext'
 
 const brandonGrotFont = localFont({
   src: [
@@ -27,20 +29,24 @@ export const metadata: Metadata = {
   description: 'Curry Club E-commerce App',
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+type RootLayoutProps = {
+  children: ReactNode
+}
+
+const RootLayout = ({ children }: Readonly<RootLayoutProps>) => {
   return (
     <html lang="en">
       <body
         className={`${brandonGrotFont.variable} antialiased font-brandon text-base`}
       >
-        <DesktopNavigation />
-        <MobileNavigation />
-        {children}
+        <CartProvider>
+          <DesktopNavigation />
+          <MobileNavigation />
+          {children}
+        </CartProvider>
       </body>
     </html>
   )
 }
+
+export default RootLayout

@@ -9,7 +9,7 @@ const MobileNavigation = () => {
 
       <ul className="-translate-y-20 w-full flexCol items-center justify-center gap-6 text-white font-bold ">
         <li>
-          <Link href="/pages/menu">FOOD MENU</Link>
+          <Link href="/pages/foodmenu">FOOD MENU</Link>
         </li>
 
         <li>
