@@ -14,6 +14,7 @@ type CartContextType = {
   cartItems: CartItem[]
   addToCart: (item: CartItem) => void
   removeFromCart: (id: string) => void
+  groupedCartItems: CartItem[]
 }
 
 type CartProviderProps = {
@@ -25,8 +26,6 @@ export const CartContext = createContext<CartContextType | undefined>(undefined)
 export const CartProvider = ({ children }: CartProviderProps) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
 
-  console.log('cartItems', cartItems)
-
   const addToCart = (item: CartItem) => {
     setCartItems((prevItems) => [...prevItems, item])
   }
@@ -35,8 +34,32 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id))
   }
 
+  // grouped cart items is a list of cart items with a quantity
+  // if a cart item is added multiple times, it will list a single item
+  // with the quantity listed for it
+  const groupedCartItems = cartItems.reduce((acc, item) => {
+    // Check if the item already exists in the accumulator
+    // If the item exists, update its quantity
+    // If the item does not exist, add it to the accumulator
+    const existingItem = acc.find((cartItem) => cartItem.id === item.id)
+    if (existingItem) {
+      return acc.map((cartItem) =>
+        cartItem.id === item.id
+          ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
+          : cartItem
+      )
+    } else {
+      return [...acc, { ...item }]
+    }
+  }, [] as CartItem[])
+
+  console.log('cartItems', cartItems)
+  console.log('groupedCartItems', groupedCartItems)
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{ cartItems, addToCart, removeFromCart, groupedCartItems }}
+    >
       {children}
     </CartContext.Provider>
   )
