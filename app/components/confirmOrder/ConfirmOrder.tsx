@@ -11,7 +11,7 @@ const ConfirmOrder = () => {
   console.log('groupedCartItems', groupedCartItems)
 
   return (
-    <article className="flexCol w-[400px] max-w-[600px] rounded-3xl bg-twDarkGrey shadow-lg px-4">
+    <article className="flexCol w-[400px] max-w-[600px] rounded-3xl bg-twDarkGrey shadow-lg px-4 md:mt-8">
       <div className="flex flex-col items-center justify-center p-4">
         <Image src={cartIcon} width={75} height={75} alt="" />
         <h1 className="p-2 text-3xl">CHECKOUT</h1>
@@ -23,7 +23,7 @@ const ConfirmOrder = () => {
           <p className="m-1 w-4/12 pl-2 text-white ">Item</p>
           <p className="m-1 w-2/12 text-white">Qty</p>
           <p className="m-1 w-2/12 text-white">Price</p>
-          <p className="m-1 w-1/12 text-primaryPink">x</p>
+          <p className="m-1 w-1/12 text-twPink">x</p>
         </div>
       </div>
 
