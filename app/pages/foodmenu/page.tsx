@@ -3,6 +3,7 @@ import { sanityClient } from '@/app/sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 import { FoodMenuItem } from '@/app/components/foodMenu/foodMenuItem'
+import Link from 'next/link'
 
 const MENU_ITEMS_QUERY = `*[_type == "menuItems"]{ _id, name, description, price,menuItemType, image, slug }`
 
@@ -30,6 +31,13 @@ const Menu = async () => {
 
   return (
     <section className="flexCol w-full min-w-[320px] pb-20 bg-twLightGrey">
+      <Link
+        className="h-[40px] min-w-[200px] md:min-w-[300px] w-10/12 text-white bg-twPink my-5"
+        href={'/pages/confirm-order'}
+      >
+        Confirm order
+      </Link>
+
       <div className="flexCol w-full gap-y-2 sm:px-3 md:mx-8 mt-2">
         <h1 className="text-3xl font-bold translate-y-1 translate-x-1">
           Starters

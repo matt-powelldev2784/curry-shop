@@ -33,6 +33,7 @@ export default {
         extraBold: '900',
       },
       fontSize: {
+        sm: '16px',
         base: '18px',
         lg: '20px',
         xl: '22px',

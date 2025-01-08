@@ -23,7 +23,7 @@ export const FoodMenuItem = ({
   const { addToCart } = useCartContext()
 
   const onSelectMenuItem = () => {
-    addToCart({ id, name, quantity: 1, price })
+    addToCart({ id, name, quantity: 1, price, imageUrl })
   }
 
   return (
