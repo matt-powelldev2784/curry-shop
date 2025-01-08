@@ -8,11 +8,10 @@ type OrderItemProps = {
   name: string
   price: number
   imageUrl: string
+  quantity: number
 }
 
-const OrderItem = ({ name, price, imageUrl }: OrderItemProps) => {
-  console.log('name', name)
-
+const OrderItem = ({ name, quantity, price, imageUrl }: OrderItemProps) => {
   return (
     <article className="w-full text-sm md:text-base bg-twPink ">
       <div className="my-1 flex flex-row items-center justify-between bg-primaryPink">
@@ -27,7 +26,7 @@ const OrderItem = ({ name, price, imageUrl }: OrderItemProps) => {
           />
         </div>
         <p className="m-1 w-4/12 break-words pl-2 text-white">{name}</p>
-        <p className="m-1 w-2/12 text-center text-white">{'quantity'}</p>
+        <p className="m-1 w-2/12 text-center text-white">{quantity}</p>
         <p className="m-1 w-2/12 text-white">{price}</p>
         <p className="m-1 w-1/12 text-white" onClick={() => {}}>
           <Image src={deleteIcon} width={25} height={25} alt="" />

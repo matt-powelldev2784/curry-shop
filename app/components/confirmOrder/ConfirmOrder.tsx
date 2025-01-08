@@ -7,8 +7,8 @@ import { CartItem, useCartContext } from '@/app/context/CartContext'
 import OrderItem from './OrderItem'
 
 const ConfirmOrder = () => {
-  const { cartItems } = useCartContext()
-  console.log('cartItems', cartItems)
+  const { groupedCartItems } = useCartContext()
+  console.log('groupedCartItems', groupedCartItems)
 
   return (
     <article className="flexCol w-[400px] max-w-[600px] rounded-3xl bg-twDarkGrey shadow-lg px-4">
@@ -28,12 +28,13 @@ const ConfirmOrder = () => {
       </div>
 
       <div className="max-h-[15rem] w-full overflow-y-auto">
-        {cartItems.map((cartItem: CartItem) => {
+        {groupedCartItems.map((cartItem: CartItem) => {
           return (
             <OrderItem
               key={cartItem.id}
               name={cartItem.name}
               price={cartItem.price}
+              quantity={cartItem.quantity}
               imageUrl={cartItem.imageUrl}
             />
           )
