@@ -21,7 +21,7 @@ export default {
       },
       screens: {
         sm: '0px',
-        md: '800px',
+        md: '900px',
         lg: '1100px',
       },
       fontFamily: {
@@ -37,6 +37,10 @@ export default {
         base: '18px',
         lg: '20px',
         xl: '22px',
+      },
+      lineHeight: {
+        'extra-tight': '1.1',
+        'extra-loose': '2.5',
       },
     },
   },
