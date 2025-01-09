@@ -13,7 +13,13 @@ type OrderItemProps = {
   quantity: number
 }
 
-const OrderItem = ({ id, name, quantity, price, imageUrl }: OrderItemProps) => {
+const BasketItem = ({
+  id,
+  name,
+  quantity,
+  price,
+  imageUrl,
+}: OrderItemProps) => {
   const { removeFromCart } = useCartContext()
 
   return (
@@ -45,4 +51,4 @@ const OrderItem = ({ id, name, quantity, price, imageUrl }: OrderItemProps) => {
   )
 }
 
-export default OrderItem
+export default BasketItem

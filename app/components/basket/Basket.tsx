@@ -4,10 +4,10 @@ import React from 'react'
 import cartIcon from '../../assets/icons/cart_pink.png'
 import Image from 'next/image'
 import { CartItem, useCartContext } from '@/app/context/CartContext'
-import OrderItem from './OrderItem'
+import OrderItem from './BasketItem'
 import Link from 'next/link'
 
-const ConfirmOrder = () => {
+const Basket = () => {
   const { groupedCartItems } = useCartContext()
   console.log('groupedCartItems', groupedCartItems)
 
@@ -48,7 +48,7 @@ const ConfirmOrder = () => {
         <p className="text-bold inline"></p>
       </div>
 
-      <Link href="/pages/confirm-order">
+      <Link href="/pages/basket">
         <button className="h-[40px] min-w-[200px] md:min-w-[300px] w-10/12 text-white bg-twPink my-5">
           Confirm order
         </button>
@@ -57,4 +57,4 @@ const ConfirmOrder = () => {
   )
 }
 
-export default ConfirmOrder
+export default Basket

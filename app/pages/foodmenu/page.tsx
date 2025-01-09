@@ -3,7 +3,7 @@ import { sanityClient } from '@/app/sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 import { FoodMenuItem } from '@/app/components/foodMenu/foodMenuItem'
-import ConfirmOrder from '@/app/components/confirmOrder/ConfirmOrder'
+import Basket from '@/app/components/basket/Basket'
 
 const MENU_ITEMS_QUERY = `*[_type == "menuItems"]{ _id, name, description, price,menuItemType, image, slug }`
 
@@ -14,7 +14,7 @@ const urlFor = (source: SanityImageSource) => {
   return builder.image(source)
 }
 
-const Menu = async () => {
+const FoodMenuPage = async () => {
   const menuItems = await sanityClient.fetch<SanityDocument[]>(
     MENU_ITEMS_QUERY,
     {},
@@ -124,10 +124,10 @@ const Menu = async () => {
       </div>
 
       <div className="flex flex-col items-start lg:w-5/12 mt-6 mr-20 sm:hidden md:hidden lg:block">
-        <ConfirmOrder />
+        <Basket />
       </div>
     </section>
   )
 }
 
-export default Menu
+export default FoodMenuPage
