@@ -4,14 +4,14 @@ import React from 'react'
 import cartIcon from '../../assets/icons/cart_pink.png'
 import Image from 'next/image'
 import { CartItem, useCartContext } from '@/app/context/CartContext'
-import OrderItem from './OrderItem'
+import OrderItem from './BasketItem'
+import Link from 'next/link'
 
-const ConfirmOrder = () => {
+const Basket = () => {
   const { groupedCartItems } = useCartContext()
-  console.log('groupedCartItems', groupedCartItems)
 
   return (
-    <article className="flexCol w-[400px] max-w-[600px] rounded-3xl bg-twDarkGrey shadow-lg px-4 md:mt-8">
+    <article className="flexCol w-full max-w-[700px] md:rounded-3xl md:border-2 md:border-twPink px-4 md:mt-8">
       <div className="flex flex-col items-center justify-center p-4">
         <Image src={cartIcon} width={75} height={75} alt="" />
         <h1 className="p-2 text-3xl">CHECKOUT</h1>
@@ -32,6 +32,7 @@ const ConfirmOrder = () => {
           return (
             <OrderItem
               key={cartItem.id}
+              id={cartItem.id}
               name={cartItem.name}
               price={cartItem.price}
               quantity={cartItem.quantity}
@@ -46,14 +47,13 @@ const ConfirmOrder = () => {
         <p className="text-bold inline"></p>
       </div>
 
-      <button
-        className="h-[40px] min-w-[200px] md:min-w-[300px] w-10/12 text-white bg-twPink my-5"
-        onClick={() => {}}
-      >
-        Confirm order
-      </button>
+      <Link href="/pages/basket">
+        <button className="h-[40px] w-[300px] text-white bg-twBlack my-5">
+          Confirm order
+        </button>
+      </Link>
     </article>
   )
 }
 
-export default ConfirmOrder
+export default Basket

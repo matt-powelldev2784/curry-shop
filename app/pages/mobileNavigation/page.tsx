@@ -2,7 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import CloseMenu from '@/app/components/navigation/mobileNavigation/CloseMenu'
 
-const MobileNavigation = () => {
+const MobileNavigationPage = () => {
   return (
     <nav className="sm:flex md:hidden w-full h-full min-h-screen bg-twPink">
       <CloseMenu />
@@ -31,4 +31,4 @@ const MobileNavigation = () => {
   )
 }
 
-export default MobileNavigation
+export default MobileNavigationPage
