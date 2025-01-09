@@ -33,6 +33,7 @@ const ConfirmOrder = () => {
           return (
             <OrderItem
               key={cartItem.id}
+              id={cartItem.id}
               name={cartItem.name}
               price={cartItem.price}
               quantity={cartItem.quantity}
