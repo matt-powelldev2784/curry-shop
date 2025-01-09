@@ -9,10 +9,9 @@ import Link from 'next/link'
 
 const Basket = () => {
   const { groupedCartItems } = useCartContext()
-  console.log('groupedCartItems', groupedCartItems)
 
   return (
-    <article className="flexCol w-full max-w-[700px] lg:rounded-3xl md:border-2 md:border-twPink px-4 md:mt-8">
+    <article className="flexCol w-full max-w-[700px] md:rounded-3xl md:border-2 md:border-twPink px-4 md:mt-8">
       <div className="flex flex-col items-center justify-center p-4">
         <Image src={cartIcon} width={75} height={75} alt="" />
         <h1 className="p-2 text-3xl">CHECKOUT</h1>
@@ -49,7 +48,7 @@ const Basket = () => {
       </div>
 
       <Link href="/pages/basket">
-        <button className="h-[40px] min-w-[200px] md:min-w-[300px] w-10/12 text-white bg-twPink my-5">
+        <button className="h-[40px] w-[300px] text-white bg-twPink my-5">
           Confirm order
         </button>
       </Link>
