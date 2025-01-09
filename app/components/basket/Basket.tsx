@@ -14,7 +14,7 @@ const Basket = () => {
     <article className="flexCol w-full max-w-[700px] md:rounded-3xl md:border-2 md:border-twPink px-4 md:mt-8">
       <div className="flex flex-col items-center justify-center p-4">
         <Image src={cartIcon} width={75} height={75} alt="" />
-        <h1 className="p-2 text-3xl">CHECKOUT</h1>
+        <h1 className="p-2 text-3xl text-black">CHECKOUT</h1>
       </div>
 
       <div className="w-full">

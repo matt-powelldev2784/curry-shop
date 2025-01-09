@@ -33,7 +33,7 @@ const FoodMenuPage = async () => {
     <section className="flex items-start gap-24 w-full min-w-[320px] pb-20 bg-twLightGrey ">
       <div className="flexCol w-full min-w-[320px] lg:w-7/12 lg:ml-14 pb-20 bg-twLightGrey">
         <div className="flexCol w-full gap-y-2 sm:px-3 md:mx-8 mt-2">
-          <h1 className="text-3xl font-bold translate-y-1 translate-x-1">
+          <h1 className="text-3xl font-bold translate-y-1 translate-x-1 text-black">
             Starters
           </h1>
           {starters.map((menuItem) => {
@@ -57,7 +57,7 @@ const FoodMenuPage = async () => {
         </div>
 
         <div className="flexCol w-full gap-y-2 sm:px-3 md:mx-8 mt-2">
-          <h1 className="text-3xl font-bold translate-y-1">Mains</h1>
+          <h1 className="text-3xl font-bold translate-y-1 text-black">Mains</h1>
           {mains.map((menuItem) => {
             const imageUrl = urlFor(menuItem.image)
               ?.width(550)
@@ -79,7 +79,7 @@ const FoodMenuPage = async () => {
         </div>
 
         <div className="flexCol w-full gap-y-2 sm:px-3 md:mx-8 mt-2">
-          <h1 className="text-3xl font-bold translate-y-1">Sides</h1>
+          <h1 className="text-3xl font-bold translate-y-1 text-black">Sides</h1>
           {sides.map((menuItem) => {
             const imageUrl = urlFor(menuItem.image)
               ?.width(550)
@@ -101,7 +101,9 @@ const FoodMenuPage = async () => {
         </div>
 
         <div className="flexCol w-full gap-y-2 sm:px-3 md:mx-8 mt-2">
-          <h1 className="text-3xl font-bold translate-y-1">Drinks</h1>
+          <h1 className="text-3xl font-bold translate-y-1 text-black">
+            Drinks
+          </h1>
           {drinks.map((menuItem) => {
             const imageUrl = urlFor(menuItem.image)
               ?.width(550)
