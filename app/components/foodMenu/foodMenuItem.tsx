@@ -27,7 +27,7 @@ export const FoodMenuItem = ({
   }
 
   return (
-    <article className="flex h-[130px] w-full max-w-[600px] items-center rounded-l-xl rounded-r-xl bg-twWhite">
+    <article className="flex h-[130px] w-full md:max-w-[900px] items-center rounded-l-xl rounded-r-xl bg-twWhite">
       <div className="flex h-full w-8/12 flex-col justify-between p-3">
         <p className="sm:text-base md:text-lg text-black">{name}</p>
         <p className="md:text-md text-black">
@@ -47,7 +47,7 @@ export const FoodMenuItem = ({
         </div>
       </div>
 
-      <div className="relative h-full sm:w-8/12 md:w-4/12 max-w-[200px] ">
+      <div className="relative h-full sm:w-8/12 md:w-4/12 lg:w-4/12 max-w-[300px]">
         <Link
           className="absolute right-2 bottom-2 z-10 cursor-pointer rounded-lg bg-twPink p-1 text-center text-sm text-white"
           href={`/pages/foodmenu/${slug.current}`}

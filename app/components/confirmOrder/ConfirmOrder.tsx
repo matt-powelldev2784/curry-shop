@@ -5,6 +5,7 @@ import cartIcon from '../../assets/icons/cart_pink.png'
 import Image from 'next/image'
 import { CartItem, useCartContext } from '@/app/context/CartContext'
 import OrderItem from './OrderItem'
+import Link from 'next/link'
 
 const ConfirmOrder = () => {
   const { groupedCartItems } = useCartContext()
@@ -46,12 +47,11 @@ const ConfirmOrder = () => {
         <p className="text-bold inline"></p>
       </div>
 
-      <button
-        className="h-[40px] min-w-[200px] md:min-w-[300px] w-10/12 text-white bg-twPink my-5"
-        onClick={() => {}}
-      >
-        Confirm order
-      </button>
+      <Link href="/pages/confirm-order">
+        <button className="h-[40px] min-w-[200px] md:min-w-[300px] w-10/12 text-white bg-twPink my-5">
+          Confirm order
+        </button>
+      </Link>
     </article>
   )
 }
