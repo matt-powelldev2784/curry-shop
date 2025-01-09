@@ -48,7 +48,7 @@ const Basket = () => {
       </div>
 
       <Link href="/pages/basket">
-        <button className="h-[40px] w-[300px] text-white bg-twPink my-5">
+        <button className="h-[40px] w-[300px] text-white bg-twBlack my-5">
           Confirm order
         </button>
       </Link>
