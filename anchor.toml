@@ -1,0 +1,10 @@
+[lcl-host]
+realm-apid = 'localhost'
+
+[org]
+apid = 'matt-powelldev2784'
+
+[service]
+apid = 'curry_shop'
+category = 'javascript'
+cert-style = 'acme'
