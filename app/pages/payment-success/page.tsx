@@ -1,8 +1,12 @@
-export default function PaymentSuccess({
-  searchParams: { amount },
-}: {
-  searchParams: { amount: string }
-}) {
+type SearchParams = Promise<{ amount: string }>
+
+type PaymentSuccessProps = {
+  searchParams: SearchParams
+}
+
+const PaymentSuccess = async ({ searchParams }: PaymentSuccessProps) => {
+  const { amount } = await searchParams
+
   return (
     <main className="max-w-6xl mx-auto p-10 text-white text-center border m-10 rounded-md bg-gradient-to-tr from-blue-500 to-purple-500">
       <div className="mb-10">
@@ -16,3 +20,5 @@ export default function PaymentSuccess({
     </main>
   )
 }
+
+export default PaymentSuccess
