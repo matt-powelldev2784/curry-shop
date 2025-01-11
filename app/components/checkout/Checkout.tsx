@@ -39,10 +39,7 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
       return
     }
 
-    const domain =
-      process.env.NODE_ENV === 'production'
-        ? process.env.PROD_DOMAIN
-        : process.env.DEV_DOMAIN
+    const domain = process.env.NEXT_PUBLIC_DOMAIN
 
     console.log('domain', domain)
 
@@ -50,7 +47,7 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
       elements,
       clientSecret,
       confirmParams: {
-        return_url: `http://localhost:3000/pages/payment-success?amount=${amount}`,
+        return_url: `${domain}/pages/payment-success?amount=${amount}`,
       },
     })
 
