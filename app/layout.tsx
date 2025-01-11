@@ -5,8 +5,8 @@ import DesktopNavigation from './components/navigation/desktopNavigation/Desktop
 import MobileNavigation from './components/navigation/mobileNavigation/MobileNavigation'
 import { ReactNode } from 'react'
 import { CartProvider } from './context/CartContext'
-import { Session } from 'next-auth'
 import { SessionProvider } from 'next-auth/react'
+import { auth } from './api/auth/auth'
 
 const brandonGrotFont = localFont({
   src: [
@@ -33,10 +33,11 @@ export const metadata: Metadata = {
 
 type RootLayoutProps = {
   children: ReactNode
-  session: Session | null
 }
 
-const RootLayout = ({ children, session }: RootLayoutProps) => {
+const RootLayout = async ({ children }: RootLayoutProps) => {
+  const session = await auth()
+
   return (
     <html lang="en">
       <body
