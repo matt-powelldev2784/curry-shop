@@ -36,7 +36,7 @@ type RootLayoutProps = {
   session: Session | null
 }
 
-const RootLayout = ({ children, session }: Readonly<RootLayoutProps>) => {
+const RootLayout = ({ children, session }: RootLayoutProps) => {
   return (
     <html lang="en">
       <body
