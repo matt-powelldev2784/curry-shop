@@ -21,6 +21,7 @@ const BasketItem = ({
   imageUrl,
 }: OrderItemProps) => {
   const { removeFromCart } = useCartContext()
+  const totalPrice = price * quantity
 
   return (
     <article className="w-full text-sm md:text-base bg-twPink ">
@@ -36,8 +37,13 @@ const BasketItem = ({
           />
         </div>
         <p className="m-1 w-4/12 break-words pl-2 text-white">{name}</p>
-        <p className="m-1 w-2/12 text-center text-white">{quantity}</p>
-        <p className="m-1 w-2/12 text-white">{price}</p>
+        <p className="m-1 w-2/12 text-left text-white pl-3">{quantity}</p>
+        <p className="m-1 w-2/12 text-white">
+          {totalPrice.toLocaleString('en-GB', {
+            style: 'currency',
+            currency: 'GBP',
+          })}
+        </p>
         <p
           className="m-1 w-1/12 text-white"
           onClick={() => {

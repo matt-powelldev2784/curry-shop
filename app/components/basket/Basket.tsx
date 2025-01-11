@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation'
 const Basket = () => {
   const router = useRouter()
   const { data: session } = useSession()
-  const { groupedCartItems } = useCartContext()
+  const { groupedCartItems, orderTotal } = useCartContext()
 
   const onConfirmOrder = () => {
     if (!groupedCartItems.length) return
@@ -32,7 +32,7 @@ const Basket = () => {
         <div className="my-1 flex flex-row items-center justify-between bg-twPink">
           <div className="relative w-3/12 object-cover"></div>
           <p className="m-1 w-4/12 pl-2 text-white ">Item</p>
-          <p className="m-1 w-2/12 text-white">Qty</p>
+          <p className="m-1 w-2/12 text-white text-left">Qty</p>
           <p className="m-1 w-2/12 text-white">Price</p>
           <p className="m-1 w-1/12 text-twPink">x</p>
         </div>
@@ -53,9 +53,19 @@ const Basket = () => {
         })}
       </div>
 
-      <div className="w-full bg-twPink p-2 text-right text-twWhite ">
-        <p className="text-bold inline">Order Total = </p>
-        <p className="text-bold inline"></p>
+      <div className="w-full bg-twPink text-right text-twWhite ">
+        <div className="my-1 flex flex-row items-center justify-between bg-twPink">
+          <div className="relative w-3/12 object-cover"></div>
+          <p className="m-1 w-4/12 pl-2 text-twPink">x</p>
+          <p className="m-1 w-2/12 text-twWhite text-right">Total:</p>
+          <p className="m-1 w-2/12 text-twWhite font-bold text-left">
+            {orderTotal.toLocaleString('en-GB', {
+              style: 'currency',
+              currency: 'GBP',
+            })}
+          </p>
+          <p className="m-1 w-1/12 text-twPink">x</p>
+        </div>
       </div>
 
       <button
