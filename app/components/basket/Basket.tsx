@@ -5,10 +5,21 @@ import cartIcon from '../../assets/icons/cart_pink.png'
 import Image from 'next/image'
 import { CartItem, useCartContext } from '@/app/context/CartContext'
 import OrderItem from './BasketItem'
-import Link from 'next/link'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 const Basket = () => {
+  const router = useRouter()
+  const { data: session } = useSession()
   const { groupedCartItems } = useCartContext()
+
+  const onConfirmOrder = () => {
+    if (!groupedCartItems.length) return
+    if (!session) {
+      return router.push('/pages/login')
+    }
+    router.push('/pages/basket')
+  }
 
   return (
     <article className="flexCol w-full max-w-[700px] md:rounded-3xl md:border-2 md:border-twPink px-4 md:mt-8">
@@ -47,11 +58,12 @@ const Basket = () => {
         <p className="text-bold inline"></p>
       </div>
 
-      <Link href="/pages/basket">
-        <button className="h-[40px] w-[300px] text-white bg-twBlack my-5">
-          Confirm order
-        </button>
-      </Link>
+      <button
+        className="h-[40px] w-[300px] text-white bg-twBlack my-5"
+        onClick={onConfirmOrder}
+      >
+        Confirm order
+      </button>
     </article>
   )
 }
