@@ -5,6 +5,8 @@ import DesktopNavigation from './components/navigation/desktopNavigation/Desktop
 import MobileNavigation from './components/navigation/mobileNavigation/MobileNavigation'
 import { ReactNode } from 'react'
 import { CartProvider } from './context/CartContext'
+import { SessionProvider } from 'next-auth/react'
+import { auth } from './api/auth/auth'
 
 const brandonGrotFont = localFont({
   src: [
@@ -33,17 +35,21 @@ type RootLayoutProps = {
   children: ReactNode
 }
 
-const RootLayout = ({ children }: Readonly<RootLayoutProps>) => {
+const RootLayout = async ({ children }: RootLayoutProps) => {
+  const session = await auth()
+
   return (
     <html lang="en">
       <body
         className={`${brandonGrotFont.variable} antialiased font-brandon text-base`}
       >
-        <CartProvider>
-          <DesktopNavigation />
-          <MobileNavigation />
-          {children}
-        </CartProvider>
+        <SessionProvider session={session}>
+          <CartProvider>
+            <DesktopNavigation />
+            <MobileNavigation />
+            {children}
+          </CartProvider>
+        </SessionProvider>
       </body>
     </html>
   )

@@ -1,6 +1,13 @@
 'use client'
 
-import { createContext, ReactNode, useContext, useState } from 'react'
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useContext,
+  useState,
+} from 'react'
 
 export type CartItem = {
   id: string
@@ -15,6 +22,8 @@ type CartContextType = {
   addToCart: (item: CartItem) => void
   removeFromCart: (id: string) => void
   groupedCartItems: CartItem[]
+  orderTotal: number
+  resetBasket: Dispatch<SetStateAction<CartItem[]>>
 }
 
 type CartProviderProps = {
@@ -31,13 +40,13 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   }
 
   const removeFromCart = (id: string) => {
-   const index = cartItems.findIndex((item) => item.id === id)
-   if (index !== -1) {
-     setCartItems((prevItems) => [
-       ...prevItems.slice(0, index),
-       ...prevItems.slice(index + 1),
-     ])
-   }
+    const index = cartItems.findIndex((item) => item.id === id)
+    if (index !== -1) {
+      setCartItems((prevItems) => [
+        ...prevItems.slice(0, index),
+        ...prevItems.slice(index + 1),
+      ])
+    }
   }
 
   // grouped cart items is a list of cart items with a quantity
@@ -59,12 +68,28 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     }
   }, [] as CartItem[])
 
+  const orderTotal = cartItems.reduce((acc, item) => {
+    return acc + item.price * item.quantity
+  }, 0)
+
+  const resetBasket = () => {
+    setCartItems([])
+  }
+
+  console.log('orderTotal', orderTotal)
   console.log('cartItems', cartItems)
   console.log('groupedCartItems', groupedCartItems)
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, groupedCartItems }}
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        groupedCartItems,
+        orderTotal,
+        resetBasket,
+      }}
     >
       {children}
     </CartContext.Provider>
