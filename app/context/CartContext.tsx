@@ -1,6 +1,13 @@
 'use client'
 
-import { createContext, ReactNode, useContext, useState } from 'react'
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useContext,
+  useState,
+} from 'react'
 
 export type CartItem = {
   id: string
@@ -16,6 +23,7 @@ type CartContextType = {
   removeFromCart: (id: string) => void
   groupedCartItems: CartItem[]
   orderTotal: number
+  resetBasket: Dispatch<SetStateAction<CartItem[]>>
 }
 
 type CartProviderProps = {
@@ -64,6 +72,10 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     return acc + item.price * item.quantity
   }, 0)
 
+  const resetBasket = () => {
+    setCartItems([])
+  }
+
   console.log('orderTotal', orderTotal)
   console.log('cartItems', cartItems)
   console.log('groupedCartItems', groupedCartItems)
@@ -76,6 +88,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
         removeFromCart,
         groupedCartItems,
         orderTotal,
+        resetBasket,
       }}
     >
       {children}

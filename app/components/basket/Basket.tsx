@@ -8,7 +8,12 @@ import OrderItem from './BasketItem'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
-const Basket = () => {
+type BasketProps = {
+  basketTitle: string
+  onConfirmOrderRoute: string
+}
+
+const Basket = ({ basketTitle, onConfirmOrderRoute }: BasketProps) => {
   const router = useRouter()
   const { data: session } = useSession()
   const { groupedCartItems, orderTotal } = useCartContext()
@@ -18,14 +23,14 @@ const Basket = () => {
     if (!session) {
       return router.push('/pages/login')
     }
-    router.push('/pages/basket')
+    router.push(onConfirmOrderRoute)
   }
 
   return (
     <article className="flexCol w-full max-w-[700px] md:rounded-3xl md:border-2 md:border-twPink px-4 md:mt-8">
       <div className="flex flex-col items-center justify-center p-4">
         <Image src={cartIcon} width={75} height={75} alt="" />
-        <h1 className="p-2 text-3xl text-black">CHECKOUT</h1>
+        <h1 className="p-2 text-3xl text-black">{basketTitle}</h1>
       </div>
 
       <div className="w-full">
