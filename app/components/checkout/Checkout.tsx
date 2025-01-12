@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from 'react'
 import { useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js'
 import convertToSubCurrency from '@/app/lib/convertToSubCurrency'
+import cardIcon from '../../assets/icons/payment_pink.png'
+import Image from 'next/image'
 
 const CheckoutPage = ({ amount }: { amount: number }) => {
   const stripe = useStripe()
@@ -79,14 +81,27 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-2 rounded-md">
+    <form
+      onSubmit={handleSubmit}
+      className="flexCol md:rounded-3xl md:border-2 md:border-twPink p-8 md:mt-8"
+    >
+      <div className="flex flex-col items-center justify-center p-4">
+        <Image src={cardIcon} width={75} height={75} alt="Card icon" />
+        <h1 className="p-2 text-3xl text-black">{'Payment'}</h1>
+      </div>
+
+      <div className="mb-4 w-full max-w-[280px] text-justify text-sm text-twPink">
+        This is a dummy payment page. Please use card number 4242 4242 4242 4242
+        with any future expiry date and any CVC number.
+      </div>
+
       {clientSecret && <PaymentElement />}
 
       {errorMessage && <div>{errorMessage}</div>}
 
       <button
         disabled={!stripe || loading}
-        className="text-white w-full p-3 bg-black mt-2 rounded-md font-bold disabled:opacity-50 disabled:animate-pulse"
+        className="h-[40px] w-[300px] text-white bg-twBlack my-5"
       >
         {!loading ? `Pay $${amount}` : 'Processing...'}
       </button>

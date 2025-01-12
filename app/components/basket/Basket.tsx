@@ -27,8 +27,8 @@ const Basket = ({ basketTitle, onConfirmOrderRoute }: BasketProps) => {
   }
 
   return (
-    <article className="flexCol w-full max-w-[700px] md:rounded-3xl md:border-2 md:border-twPink px-4 md:mt-8">
-      <div className="flex flex-col items-center justify-center p-4">
+    <article className="flexCol w-full max-w-[700px] md:rounded-3xl md:border-2 md:border-twPink px-4 md:mt-8 ">
+      <div className="flex flex-col items-center justify-center p-4 pt-8">
         <Image src={cartIcon} width={75} height={75} alt="" />
         <h1 className="p-2 text-3xl text-black">{basketTitle}</h1>
       </div>
@@ -77,7 +77,7 @@ const Basket = ({ basketTitle, onConfirmOrderRoute }: BasketProps) => {
         className="h-[40px] w-[300px] text-white bg-twBlack my-5"
         onClick={onConfirmOrder}
       >
-        Confirm order
+        Checkout
       </button>
     </article>
   )

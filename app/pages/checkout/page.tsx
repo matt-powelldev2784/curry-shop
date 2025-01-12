@@ -14,15 +14,7 @@ const Home = () => {
   const amount = 49.99
 
   return (
-    <main className="max-w-6xl mx-auto p-10 text-white text-center border m-10 rounded-md bg-gradient-to-tr from-blue-500 to-purple-500">
-      <div className="mb-10">
-        <h1 className="text-4xl font-extrabold mb-2">Sonny</h1>
-        <h2 className="text-2xl">
-          has requested
-          <span className="font-bold"> ${amount}</span>
-        </h2>
-      </div>
-
+    <section className="flex items-start justify-center w-full min-h-screen min-w-[320px] pb-20 bg-twLightGrey">
       <Elements
         stripe={stripePromise}
         options={{
@@ -33,7 +25,7 @@ const Home = () => {
       >
         <Checkout amount={amount} />
       </Elements>
-    </main>
+    </section>
   )
 }
 
