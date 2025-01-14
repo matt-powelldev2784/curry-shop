@@ -6,9 +6,9 @@ const MENU_ITEMS_QUERY = `*[_type == "menuItems"]{ _id, name, description, price
 
 export async function POST(req: NextRequest) {
   try {
-    const { cartItems } = await req.json()
+    const { cartItems, orderTotal } = await req.json()
 
-    /// validate the body is a valid array of cart items
+    /// validate the body returns a valid array of cart items
     if (!Array.isArray(cartItems)) {
       return NextResponse.json({ error: 'Cart Items should be any array' })
     }
@@ -17,6 +17,11 @@ export async function POST(req: NextRequest) {
         error:
           'The cart item array contains a missing property or invalid type',
       })
+    }
+
+    /// validate the body returns a valid order total
+    if (orderTotal === undefined || typeof orderTotal !== 'number') {
+      return NextResponse.json({ error: 'Order total should be a number' })
     }
 
     const menuItems: SanityDocument[] =
@@ -30,6 +35,12 @@ export async function POST(req: NextRequest) {
       }
       return total
     }, 0)
+
+    // compare the secure total price from the server with the order total sent from the client
+    // return an error if values do not match
+    if (totalPrice !== orderTotal) {
+      return NextResponse.json({ error: 'Invalid order total' })
+    }
 
     return NextResponse.json({ totalPrice: totalPrice })
   } catch (error) {
