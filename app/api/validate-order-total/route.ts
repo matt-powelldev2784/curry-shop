@@ -1,11 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { sanityClient } from '@/app/sanity/client'
 import { SanityDocument } from 'next-sanity'
+import { auth } from '@/app/api/auth/auth'
 
 const MENU_ITEMS_QUERY = `*[_type == "menuItems"]{ _id, name, description, price, menuItemType, image, slug }`
 
 export async function POST(req: NextRequest) {
   try {
+    const session = await auth()
+    if (!session?.user) throw new Error('User not authenticated')
+
     const { cartItems, orderTotal } = await req.json()
 
     /// validate the body returns a valid array of cart items
