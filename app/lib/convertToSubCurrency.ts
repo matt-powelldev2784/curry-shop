@@ -1,5 +1,3 @@
-function convertToSubCurrency(amount: number, factor = 100) {
+export const convertToSubCurrency = (amount: number, factor = 100) => {
   return Math.round(amount * factor)
 }
-
-export default convertToSubCurrency

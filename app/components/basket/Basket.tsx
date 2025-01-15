@@ -18,11 +18,12 @@ const Basket = ({ basketTitle, onConfirmOrderRoute }: BasketProps) => {
   const { data: session } = useSession()
   const { groupedCartItems, orderTotal } = useCartContext()
 
-  const onConfirmOrder = () => {
+  const onConfirmOrder = async () => {
     if (!groupedCartItems.length) return
     if (!session) {
       return router.push('/pages/login')
     }
+
     router.push(onConfirmOrderRoute)
   }
 

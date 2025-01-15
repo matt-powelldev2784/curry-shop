@@ -2,28 +2,37 @@
 
 import React, { useEffect, useState } from 'react'
 import { useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js'
-import convertToSubCurrency from '@/app/lib/convertToSubCurrency'
 import cardIcon from '../../assets/icons/payment_pink.png'
 import Image from 'next/image'
+import { useCartContext } from '@/app/context/CartContext'
+import { postRequest } from '@/app/lib/apiCallUtils'
 
-const CheckoutPage = ({ amount }: { amount: number }) => {
+type ClientSecret = {
+  clientSecret: string
+}
+
+const CheckoutPage = () => {
   const stripe = useStripe()
   const elements = useElements()
   const [errorMessage, setErrorMessage] = useState<string>()
   const [clientSecret, setClientSecret] = useState('')
   const [loading, setLoading] = useState(false)
+  const { groupedCartItems, orderTotal } = useCartContext()
+  const orderTotalText = orderTotal.toLocaleString('en-GB', {
+    style: 'currency',
+    currency: 'GBP',
+  })
 
   useEffect(() => {
-    fetch('/api/create-payment-intent', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ amount: convertToSubCurrency(amount) }),
-    })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret))
-  }, [amount])
+    const createPaymentIntent = async () => {
+      const data: ClientSecret = await postRequest(
+        '/api/create-payment-intent',
+        { cartItems: groupedCartItems, orderTotal }
+      )
+      setClientSecret(data.clientSecret)
+    }
+    createPaymentIntent()
+  }, [orderTotal, groupedCartItems])
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -43,13 +52,11 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
 
     const domain = process.env.NEXT_PUBLIC_DOMAIN
 
-    console.log('domain', domain)
-
     const { error } = await stripe.confirmPayment({
       elements,
       clientSecret,
       confirmParams: {
-        return_url: `${domain}/pages/payment-success?amount=${amount}`,
+        return_url: `${domain}/pages/payment-success?amount=${orderTotal}`,
       },
     })
 
@@ -91,8 +98,9 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
       </div>
 
       <div className="mb-4 w-full max-w-[280px] text-justify text-sm text-twPink">
-        This is a dummy payment page. Please use card number 4242 4242 4242 4242
-        with any future expiry date and any CVC number.
+        Stripe is running in test mode. This is a dummy payment page. Please use
+        card number 4242 4242 4242 4242 with any future expiry date and any CVC
+        number.
       </div>
 
       {clientSecret && <PaymentElement />}
@@ -103,7 +111,7 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
         disabled={!stripe || loading}
         className="h-[40px] w-[300px] text-white bg-twBlack my-5"
       >
-        {!loading ? `Pay $${amount}` : 'Processing...'}
+        {!loading ? `Pay ${orderTotalText}` : 'Processing...'}
       </button>
     </form>
   )
