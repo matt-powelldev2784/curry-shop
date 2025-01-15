@@ -7,6 +7,10 @@ import Image from 'next/image'
 import { useCartContext } from '@/app/context/CartContext'
 import { postRequest } from '@/app/lib/apiCallUtils'
 
+type ClientSecret = {
+  clientSecret: string
+}
+
 const CheckoutPage = () => {
   const stripe = useStripe()
   const elements = useElements()
@@ -14,17 +18,20 @@ const CheckoutPage = () => {
   const [clientSecret, setClientSecret] = useState('')
   const [loading, setLoading] = useState(false)
   const { groupedCartItems, orderTotal } = useCartContext()
+  const orderTotalText = orderTotal.toLocaleString('en-GB', {
+    style: 'currency',
+    currency: 'GBP',
+  })
 
   useEffect(() => {
-    fetch('/api/create-payment-intent', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ cartItems: groupedCartItems, orderTotal }),
-    })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret))
+    const createPaymentIntent = async () => {
+      const data: ClientSecret = await postRequest(
+        '/api/create-payment-intent',
+        { cartItems: groupedCartItems, orderTotal }
+      )
+      setClientSecret(data.clientSecret)
+    }
+    createPaymentIntent()
   }, [orderTotal, groupedCartItems])
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -43,19 +50,13 @@ const CheckoutPage = () => {
       return
     }
 
-    const amount = await postRequest('/api/validate-order-total', {
-      cartItems: groupedCartItems,
-      orderTotal: orderTotal,
-    })
-    console.log('amount', amount)
-
     const domain = process.env.NEXT_PUBLIC_DOMAIN
 
     const { error } = await stripe.confirmPayment({
       elements,
       clientSecret,
       confirmParams: {
-        return_url: `${domain}/pages/payment-success?amount=${amount}`,
+        return_url: `${domain}/pages/payment-success?amount=${orderTotal}`,
       },
     })
 
@@ -110,12 +111,7 @@ const CheckoutPage = () => {
         disabled={!stripe || loading}
         className="h-[40px] w-[300px] text-white bg-twBlack my-5"
       >
-        {!loading
-          ? `Pay ${orderTotal.toLocaleString('en-GB', {
-              style: 'currency',
-              currency: 'GBP',
-            })}`
-          : 'Processing...'}
+        {!loading ? `Pay ${orderTotalText}` : 'Processing...'}
       </button>
     </form>
   )
