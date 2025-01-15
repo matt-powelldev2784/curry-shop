@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { sanityClient } from '@/app/sanity/client'
 import { SanityDocument } from 'next-sanity'
 import { auth } from '@/app/api/auth/auth'
+import { isValidCartItem } from '@/app/lib/isValidCartItem'
 
 const MENU_ITEMS_QUERY = `*[_type == "menuItems"]{ _id, name, description, price, menuItemType, image, slug }`
 
@@ -53,13 +54,4 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const isValidCartItem = (item: any) => {
-  return (
-    typeof item.id === 'string' &&
-    typeof item.name === 'string' &&
-    typeof item.quantity === 'number' &&
-    typeof item.price === 'number' &&
-    typeof item.imageUrl === 'string'
-  )
-}
+

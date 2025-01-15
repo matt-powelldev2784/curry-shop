@@ -76,7 +76,6 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     setCartItems([])
   }
 
-
   return (
     <CartContext.Provider
       value={{
