@@ -2,7 +2,6 @@ import { convertToSubCurrency } from '@/app/lib/convertToSubCurrency'
 import { postRequest } from '@/app/lib/apiCallUtils'
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
-import { auth } from '@/app/api/auth/auth'
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY
 
@@ -16,9 +15,6 @@ const stripe = new Stripe(stripeSecretKey, {
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await auth()
-    if (!session?.user) throw new Error('User not authenticated')
-
     const { cartItems, orderTotal } = await request.json()
 
     // securely get order amount from server
