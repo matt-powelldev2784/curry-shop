@@ -1,6 +1,7 @@
 'use client'
 
 import Checkout from '@/app/components/checkout/Checkout'
+import { useCartContext } from '@/app/context/CartContext'
 import { convertToSubCurrency } from '@/app/lib/convertToSubCurrency'
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
@@ -10,8 +11,8 @@ if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
 }
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY)
 
-const Home = () => {
-  const amount = 49.99
+const CheckoutPage = () => {
+  const { orderTotal } = useCartContext()
 
   return (
     <section className="flex items-start justify-center w-full min-h-screen min-w-[320px] pb-20 bg-twLightGrey">
@@ -19,14 +20,14 @@ const Home = () => {
         stripe={stripePromise}
         options={{
           mode: 'payment',
-          amount: convertToSubCurrency(amount),
+          amount: convertToSubCurrency(orderTotal),
           currency: 'gbp',
         }}
       >
-        <Checkout amount={amount} />
+        <Checkout />
       </Elements>
     </section>
   )
 }
 
-export default Home
+export default CheckoutPage

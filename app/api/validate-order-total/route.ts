@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
       await sanityClient.fetch(MENU_ITEMS_QUERY)
 
     // securely calculate the total price of the order on the server
-    const totalPrice = cartItems.reduce((total, cartItem) => {
+    const totalPrice: number = cartItems.reduce((total, cartItem) => {
       const menuItem = menuItems.find((item) => item._id === cartItem.id)
       if (menuItem) {
         return total + menuItem.price * cartItem.quantity
@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid order total' })
     }
 
-    return NextResponse.json({ totalPrice: totalPrice })
+    return NextResponse.json(totalPrice)
   } catch (error) {
     console.error('Error fetching menu items:', error)
     return NextResponse.json({ error: 'Internal Server Error' })

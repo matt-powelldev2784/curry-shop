@@ -76,9 +76,6 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     setCartItems([])
   }
 
-  console.log('orderTotal', orderTotal)
-  console.log('cartItems', cartItems)
-  console.log('groupedCartItems', groupedCartItems)
 
   return (
     <CartContext.Provider
