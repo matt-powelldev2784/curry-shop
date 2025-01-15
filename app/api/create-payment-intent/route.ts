@@ -31,10 +31,9 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       )
     }
-    const totalPrice = convertToSubCurrency(validatedPrice)
 
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: totalPrice,
+      amount: convertToSubCurrency(validatedPrice),
       currency: 'gbp',
       automatic_payment_methods: { enabled: true },
     })
