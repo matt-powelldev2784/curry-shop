@@ -1,7 +1,7 @@
 'use client'
 
 import Checkout from '@/app/components/checkout/Checkout'
-import convertToSubCurrency from '@/app/lib/convertToSubCurrency'
+import { convertToSubCurrency } from '@/app/lib/convertToSubCurrency'
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 

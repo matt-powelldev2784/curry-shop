@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js'
-import convertToSubCurrency from '@/app/lib/convertToSubCurrency'
+import { convertToSubCurrency } from '@/app/lib/convertToSubCurrency'
 import cardIcon from '../../assets/icons/payment_pink.png'
 import Image from 'next/image'
 
