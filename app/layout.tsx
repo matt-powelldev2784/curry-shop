@@ -6,7 +6,7 @@ import MobileNavigation from './components/navigation/mobileNavigation/MobileNav
 import { ReactNode } from 'react'
 import { CartProvider } from './context/CartContext'
 import { SessionProvider } from 'next-auth/react'
-import { auth } from './api/auth/auth'
+import { auth } from '@/auth'
 
 const brandonGrotFont = localFont({
   src: [

@@ -1,4 +1,4 @@
-import { auth } from '@/app/api/auth/auth'
+import { auth } from '@/auth'
 import { NextResponse } from 'next/server'
 
 // List of routes that require authentication
@@ -8,7 +8,8 @@ console.log(protectedRoutes)
 
 export default auth((req) => {
   const isLoggedIn = !!req.auth
-  console.log('isLoggedIn', isLoggedIn)
+  console.log('auth middleware isLoggedIn', isLoggedIn)
+
   const isProtectedRoute = protectedRoutes.some((route) =>
     req.nextUrl.pathname.startsWith(route)
   )

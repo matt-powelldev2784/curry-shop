@@ -1,4 +1,4 @@
-import { signIn } from '@/app/api/auth/auth'
+import { signIn } from '@/auth'
 
 export default function Login() {
   return (

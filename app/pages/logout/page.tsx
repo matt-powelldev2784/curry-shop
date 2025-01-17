@@ -1,5 +1,4 @@
-import { signOut } from '@/app/api/auth/auth'
-import WithAuth from '@/app/api/auth/WithAuth'
+import { signOut } from '@/auth'
 
 const Logout = async () => {
   return (
@@ -19,4 +18,4 @@ const Logout = async () => {
   )
 }
 
-export default WithAuth(Logout)
+export default Logout
