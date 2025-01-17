@@ -70,10 +70,13 @@ export const POST = auth(async (req) => {
       return total
     }, 0)
 
-    // compare the secure total price from the server with the order total sent from the client
+    // compare the validated price from the server with the order total sent from the client
     // return an error if values do not match
     if (validatedPrice !== orderTotal) {
-      return NextResponse.json({ error: 'Invalid order total.' })
+      return NextResponse.json(
+        { error: 'Invalid order total' },
+        { status: 400 }
+      )
     }
 
     // valid that order amount is a number
