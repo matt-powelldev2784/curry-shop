@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import deliveryIcon from '@/app/assets/icons/delivery_pink.png'
 import curryClubLogo from '@/app/assets/curry_club_logo_pink.png'
-import { auth } from '@/app/api/auth/auth'
+import { auth } from '@/auth'
 
 type SearchParams = Promise<{ amount: string }>
 
