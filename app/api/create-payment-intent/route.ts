@@ -106,4 +106,5 @@ export const POST = auth(async (req) => {
       { status: 500 }
     )
   }
-})
+}) as any // eslint-disable-line @typescript-eslint/no-explicit-any
+// this is a temporary fix for the authjs typing issue
