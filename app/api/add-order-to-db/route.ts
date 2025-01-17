@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { auth } from '@/app/api/auth/auth'
+import { auth } from '@//auth'
 import { isValidCartItem } from '@/app/lib/isValidCartItem'
 import { prisma } from '@/prisma/prisma'
 import { CartItem } from '@/app/context/CartContext'
