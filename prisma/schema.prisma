@@ -96,12 +96,10 @@ model OrderItem {
   id        String   @id @default(cuid())
   quantity  Int
   name      String
-  price     Decimal
+  price     Decimal 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   orderId String
   order   Order  @relation(fields: [orderId], references: [id])
-
-  @@unique([orderId], name: "food_item_unique")
 }

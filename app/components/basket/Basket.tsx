@@ -7,6 +7,7 @@ import { CartItem, useCartContext } from '@/app/context/CartContext'
 import OrderItem from './BasketItem'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import { postRequest } from '@/app/lib/apiCallUtils'
 
 type BasketProps = {
   basketTitle: string
@@ -23,6 +24,11 @@ const Basket = ({ basketTitle, onConfirmOrderRoute }: BasketProps) => {
     if (!session) {
       return router.push('/pages/login')
     }
+    // const order = await postRequest('/api/add-order-to-db', {
+    //   groupedCartItems,
+    //   orderTotal,
+    // })
+    // console.log('order', order)
 
     router.push(onConfirmOrderRoute)
   }
