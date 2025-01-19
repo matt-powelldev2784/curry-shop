@@ -68,4 +68,6 @@ export const POST = auth(async (req) => {
     console.error('Error creating order:', error)
     return NextResponse.json({ error: 'Internal Server Error' })
   }
-})
+}) as any // eslint-disable-line @typescript-eslint/no-explicit-any
+// this is a temporary fix for the authjs typing issue
+// https://github.com/nextauthjs/next-auth/issues/12224
