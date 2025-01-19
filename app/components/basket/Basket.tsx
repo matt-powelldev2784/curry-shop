@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import cartIcon from '../../assets/icons/cart_pink.png'
 import Image from 'next/image'
 import { CartItem, useCartContext } from '@/app/context/CartContext'
@@ -8,6 +8,8 @@ import OrderItem from './BasketItem'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { postRequest } from '@/app/lib/apiCallUtils'
+import { apiResponseHasError } from '@/app/lib/apiResponseHasError'
+import Error from '../error/Error'
 
 type BasketProps = {
   basketTitle: string
@@ -18,19 +20,31 @@ const Basket = ({ basketTitle, onConfirmOrderRoute }: BasketProps) => {
   const router = useRouter()
   const { data: session } = useSession()
   const { groupedCartItems, orderTotal } = useCartContext()
+  const [orderError, setOrderError] = useState(false)
 
   const onConfirmOrder = async () => {
     if (!groupedCartItems.length) return
     if (!session) {
       return router.push('/pages/login')
     }
-    // const order = await postRequest('/api/add-order-to-db', {
-    //   groupedCartItems,
-    //   orderTotal,
-    // })
-    // console.log('order', order)
+
+    const order = await postRequest('/api/add-order-to-db', {
+      groupedCartItems,
+      orderTotal,
+    })
+
+    if (apiResponseHasError(order)) {
+      setOrderError(true)
+      return
+    }
 
     router.push(onConfirmOrderRoute)
+  }
+
+  if (orderError) {
+    return (
+      <Error errorMessage="There was an error processing your order.  Please try again."></Error>
+    )
   }
 
   return (
