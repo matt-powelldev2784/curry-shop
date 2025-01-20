@@ -1,15 +1,15 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import cartIcon from '../../assets/icons/cart_pink.png'
 import Image from 'next/image'
 import { CartItem, useCartContext } from '@/app/context/CartContext'
 import OrderItem from './BasketItem'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { postRequest } from '@/app/lib/apiCallUtils'
-import { apiResponseHasError } from '@/app/lib/apiResponseHasError'
+import { usePostRequest } from '@/app/lib/useApi'
 import Error from '../error/Error'
+import loadingIcon from '../../assets/icons/loading.png'
 
 type BasketProps = {
   basketTitle: string
@@ -20,7 +20,7 @@ const Basket = ({ basketTitle, onConfirmOrderRoute }: BasketProps) => {
   const router = useRouter()
   const { data: session } = useSession()
   const { groupedCartItems, orderTotal } = useCartContext()
-  const [orderError, setOrderError] = useState(false)
+  const { postRequest, data, error, isLoading } = usePostRequest()
 
   const onConfirmOrder = async () => {
     if (!groupedCartItems.length) return
@@ -28,23 +28,23 @@ const Basket = ({ basketTitle, onConfirmOrderRoute }: BasketProps) => {
       return router.push('/pages/login')
     }
 
-    const order = await postRequest('/api/add-order-to-db', {
-      groupedCartItems,
-      orderTotal,
+    await postRequest({
+      url: '/api/add-order-to-db',
+      body: {
+        groupedCartItems,
+        orderTotal,
+      },
     })
-
-    if (apiResponseHasError(order)) {
-      setOrderError(true)
-      return
-    }
-
-    router.push(onConfirmOrderRoute)
   }
 
-  if (orderError) {
+  if (error) {
     return (
       <Error errorMessage="There was an error processing your order.  Please try again."></Error>
     )
+  }
+
+  if (data) {
+    router.push(onConfirmOrderRoute)
   }
 
   return (
@@ -95,10 +95,21 @@ const Basket = ({ basketTitle, onConfirmOrderRoute }: BasketProps) => {
       </div>
 
       <button
-        className="h-[40px] w-[300px] text-white bg-twBlack my-5"
+        className="h-[40px] w-[300px] text-white bg-twBlack my-5 flexCol"
         onClick={onConfirmOrder}
+        disabled={isLoading}
       >
-        Checkout
+        {isLoading ? (
+          <Image
+            src={loadingIcon}
+            width={20}
+            height={20}
+            alt="loading"
+            className="animate-spin"
+          />
+        ) : (
+          'Checkout'
+        )}
       </button>
     </article>
   )
