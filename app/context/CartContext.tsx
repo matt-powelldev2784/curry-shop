@@ -82,8 +82,6 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     localStorage.removeItem('savedCartItems')
   }
 
-  console.log('orderTotal', orderTotal)
-
   return (
     <CartContext.Provider
       value={{
