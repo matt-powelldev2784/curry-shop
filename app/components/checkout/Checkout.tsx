@@ -6,6 +6,7 @@ import cardIcon from '../../assets/icons/payment_pink.png'
 import Image from 'next/image'
 import { useCartContext } from '@/app/context/CartContext'
 import { postRequest } from '@/app/lib/useApi'
+import Button from '@/app/ui/button/Button'
 
 type ClientSecret = {
   clientSecret: string
@@ -107,12 +108,11 @@ const CheckoutPage = () => {
 
       {errorMessage && <div>{errorMessage}</div>}
 
-      <button
+      <Button
         disabled={!stripe || loading}
-        className="h-[40px] w-[300px] text-white bg-twBlack my-5"
-      >
-        {!loading ? `Pay ${orderTotalText}` : 'Processing...'}
-      </button>
+        isLoading={loading}
+        text={`Pay ${orderTotalText}`}
+      />
     </form>
   )
 }

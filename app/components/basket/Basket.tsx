@@ -98,6 +98,7 @@ const Basket = ({ basketTitle, onConfirmOrderRoute }: BasketProps) => {
         onClick={onConfirmOrder}
         isLoading={isLoading}
         text="Confirm Order"
+        disabled={isLoading}
       />
     </article>
   )

@@ -3,17 +3,18 @@ import loadingIcon from '../../assets/icons/loading.png'
 import Image from 'next/image'
 
 interface ButtonProps {
-  onClick: () => void
-  isLoading: boolean
+  onClick?: () => void
+  isLoading?: boolean
   text: string
+  disabled?: boolean
 }
 
-const Button = ({ onClick, isLoading, text }: ButtonProps) => {
+const Button = ({ onClick, isLoading, text, disabled }: ButtonProps) => {
   return (
     <button
       className="h-[40px] w-[300px] text-white bg-twBlack my-5 flexCol"
       onClick={onClick}
-      disabled={isLoading}
+      disabled={disabled}
     >
       {isLoading ? (
         <Image
