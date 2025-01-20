@@ -5,7 +5,7 @@ import { useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js'
 import cardIcon from '../../assets/icons/payment_pink.png'
 import Image from 'next/image'
 import { useCartContext } from '@/app/context/CartContext'
-import { postRequest } from '@/app/lib/apiServerFunctions'
+import { postRequest } from '@/app/lib/serverApiFunctions'
 import Button from '@/app/ui/button/Button'
 import { useSearchParams } from 'next/navigation'
 

@@ -2,7 +2,7 @@ import Image from 'next/image'
 import deliveryIcon from '@/app/assets/icons/delivery_pink.png'
 import curryClubLogo from '@/app/assets/curry_club_logo_pink.png'
 import { auth } from '@/auth'
-import { postRequest } from '@/app/lib/apiServerFunctions'
+import { postRequest } from '@/app/lib/serverApiFunctions'
 
 type SearchParams = Promise<{ amount: string; orderId: string }>
 
