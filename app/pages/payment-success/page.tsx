@@ -3,6 +3,8 @@ import deliveryIcon from '@/app/assets/icons/delivery_pink.png'
 import curryClubLogo from '@/app/assets/curry_club_logo_pink.png'
 import { auth } from '@/auth'
 import { postRequest } from '@/app/lib/serverApiFunctions'
+import ServerError from '@/app/components/error/ServerError'
+import { redirect } from 'next/navigation'
 
 type SearchParams = Promise<{ amount: string; orderId: string }>
 
@@ -10,20 +12,33 @@ type PaymentSuccessProps = {
   searchParams: SearchParams
 }
 
+type ConfirmedOrder = {
+  userFriendlyId: string
+  error: string
+}
+
 const PaymentSuccess = async ({ searchParams }: PaymentSuccessProps) => {
+  const session = await auth()
+  if (!session) {
+    redirect('/pages/error')
+  }
+
   const { amount, orderId } = await searchParams
   const paymentAmount = parseFloat(amount).toLocaleString('en-GB', {
     style: 'currency',
     currency: 'GBP',
   })
-  const session = await auth()
 
   const domain = process.env.NEXT_PUBLIC_DOMAIN
-  const confirmedOrder = await postRequest(`${domain}/api/confirm-order`, {
+  const confirmedOrder = (await postRequest(`${domain}/api/confirm-order`, {
     orderId,
-  })
-  const order = confirmedOrder as { userFriendlyId: string }
+  })) as ConfirmedOrder
+  const order = confirmedOrder
   const userFriendlyId = order.userFriendlyId
+
+  if (confirmedOrder.error) {
+    return <ServerError errorMessage={confirmedOrder.error} />
+  }
 
   return (
     <section className="flex items-start justify-center w-full min-h-screen min-w-[320px] pb-20 bg-twLightGrey">

@@ -8,7 +8,7 @@ import OrderItem from './BasketItem'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { usePostRequest } from '@/app/lib/clientApiHooks'
-import Error from '../error/Error'
+import Error from '../error/ClientError'
 import Button from '@/app/ui/button/Button'
 
 const Basket = () => {
