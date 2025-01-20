@@ -11,12 +11,7 @@ import { usePostRequest } from '@/app/lib/useApi'
 import Error from '../error/Error'
 import Button from '@/app/ui/button/Button'
 
-type BasketProps = {
-  basketTitle: string
-  onConfirmOrderRoute: string
-}
-
-const Basket = ({ basketTitle, onConfirmOrderRoute }: BasketProps) => {
+const Basket = () => {
   const router = useRouter()
   const { data: session } = useSession()
   const { groupedCartItems, orderTotal, cartItems } = useCartContext()
@@ -46,14 +41,15 @@ const Basket = ({ basketTitle, onConfirmOrderRoute }: BasketProps) => {
   }
 
   if (data) {
-    router.push(onConfirmOrderRoute)
+    const order = data as { id: string }
+    router.push(`/pages/checkout?orderId=${order.id}`)
   }
 
   return (
     <article className="flexCol w-full max-w-[700px] md:rounded-3xl md:border-2 md:border-twPink px-4 md:mt-8 ">
       <div className="flex flex-col items-center justify-center p-4 pt-8">
         <Image src={cartIcon} width={75} height={75} alt="" />
-        <h1 className="p-2 text-3xl text-black">{basketTitle}</h1>
+        <h1 className="p-2 text-3xl text-black">Checkout</h1>
       </div>
 
       <div className="w-full">

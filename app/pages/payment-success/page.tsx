@@ -2,20 +2,28 @@ import Image from 'next/image'
 import deliveryIcon from '@/app/assets/icons/delivery_pink.png'
 import curryClubLogo from '@/app/assets/curry_club_logo_pink.png'
 import { auth } from '@/auth'
+import { postRequest } from '@/app/lib/apiServerFunctions'
 
-type SearchParams = Promise<{ amount: string }>
+type SearchParams = Promise<{ amount: string; orderId: string }>
 
 type PaymentSuccessProps = {
   searchParams: SearchParams
 }
 
 const PaymentSuccess = async ({ searchParams }: PaymentSuccessProps) => {
-  const { amount } = await searchParams
+  const { amount, orderId } = await searchParams
   const paymentAmount = parseFloat(amount).toLocaleString('en-GB', {
     style: 'currency',
     currency: 'GBP',
   })
   const session = await auth()
+
+  const domain = process.env.NEXT_PUBLIC_DOMAIN
+  const confirmedOrder = await postRequest(`${domain}/api/confirm-order`, {
+    orderId,
+  })
+  const order = confirmedOrder as { userFriendlyId: string }
+  const userFriendlyId = order.userFriendlyId
 
   return (
     <section className="flex items-start justify-center w-full min-h-screen min-w-[320px] pb-20 bg-twLightGrey">
@@ -27,12 +35,7 @@ const PaymentSuccess = async ({ searchParams }: PaymentSuccessProps) => {
           been successful
         </p>
 
-        <p className="mt-5 text-xl">Your order number is:</p>
-        {/* {confirmedOrderId ? (
-          <p className="mb-10 bg-primaryPink p-3 text-base text-secondaryWhite md:text-xl">
-            {confirmedOrderId}
-          </p>
-        ) : null} */}
+        <p className="mt-5 text-xl">Your order number is: {userFriendlyId}</p>
 
         <p className="m-5 text-center text-xl">
           An email confirmation has been sent to {session?.user?.email}

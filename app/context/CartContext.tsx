@@ -76,7 +76,6 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     setCartItems([])
   }
 
-   
   const savedCartItems = localStorage.getItem('savedCartItems')
   if (savedCartItems) {
     setCartItems(JSON.parse(savedCartItems))

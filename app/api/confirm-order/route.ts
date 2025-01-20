@@ -1,45 +1,40 @@
 import { NextResponse } from 'next/server'
-import { auth } from '@//auth'
+import { auth } from '@/auth'
 import { prisma } from '@/prisma/prisma'
-import type { Prisma } from '@prisma/client'
 
 export const POST = auth(async (req) => {
   try {
-    // get the user email from the auth object
-    const userEmail = req.auth?.user?.email
-    if (!userEmail) {
-      return NextResponse.json(
-        { error: 'No user not available.' },
-        { status: 400 }
-      )
-    }
+    //check if user is authenticated
+    // const auth = req.auth
+    // console.log('auth', auth)
+    // if (!auth) {
+    //   return NextResponse.json(
+    //     { error: 'User not authorised.' },
+    //     { status: 401 }
+    //   )
+    // }
 
-    // get the userId using the email
-    const user = await prisma.user.findUnique({
+    // get the orderId from the request body
+    const { orderId } = await req.json()
+
+    // update the order in the database to confirmed
+    const confirmedOrder = await prisma.order.update({
       where: {
-        email: userEmail,
+        id: orderId,
       },
-      select: {
-        id: true,
-      },
-    })
-
-    // validate the userId
-    if (!user || typeof user.id !== 'string') {
-      return NextResponse.json({ error: 'Invalid userId' }, { status: 400 })
-    }
-
-    const createdOrder = await prisma.order.create({
-      data: order,
-      include: {
-        orderItems: true,
+      data: {
+        orderConfirmed: true,
       },
     })
 
-    return NextResponse.json(createdOrder, { status: 201 })
+    // return the confirmed order
+    return NextResponse.json(confirmedOrder, { status: 200 })
   } catch (error) {
-    console.error('Error creating order:', error)
-    return NextResponse.json({ error: 'Internal Server Error' })
+    console.error('Internal Error:', error)
+    return NextResponse.json(
+      { error: `Internal Server Error: ${error}` },
+      { status: 500 }
+    )
   }
 }) as any // eslint-disable-line @typescript-eslint/no-explicit-any
 // this is a temporary fix for the authjs typing issue
