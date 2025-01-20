@@ -19,12 +19,14 @@ type BasketProps = {
 const Basket = ({ basketTitle, onConfirmOrderRoute }: BasketProps) => {
   const router = useRouter()
   const { data: session } = useSession()
-  const { groupedCartItems, orderTotal } = useCartContext()
+  const { groupedCartItems, orderTotal, cartItems } = useCartContext()
   const { postRequest, data, error, isLoading } = usePostRequest()
 
   const onConfirmOrder = async () => {
     if (!groupedCartItems.length) return
+
     if (!session) {
+      localStorage.setItem('savedCartItems', JSON.stringify(cartItems))
       return router.push('/pages/login')
     }
 

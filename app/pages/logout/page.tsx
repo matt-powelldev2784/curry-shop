@@ -7,7 +7,7 @@ const Logout = async () => {
       <form
         action={async () => {
           'use server'
-          await signOut()
+          await signOut({ redirectTo: '/' })
         }}
       >
         <button type="submit" className="bg-blue-500 p-2">
