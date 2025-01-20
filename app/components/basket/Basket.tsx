@@ -9,7 +9,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { usePostRequest } from '@/app/lib/useApi'
 import Error from '../error/Error'
-import loadingIcon from '../../assets/icons/loading.png'
+import Button from '@/app/ui/button/Button'
 
 type BasketProps = {
   basketTitle: string
@@ -94,23 +94,11 @@ const Basket = ({ basketTitle, onConfirmOrderRoute }: BasketProps) => {
         </div>
       </div>
 
-      <button
-        className="h-[40px] w-[300px] text-white bg-twBlack my-5 flexCol"
+      <Button
         onClick={onConfirmOrder}
-        disabled={isLoading}
-      >
-        {isLoading ? (
-          <Image
-            src={loadingIcon}
-            width={20}
-            height={20}
-            alt="loading"
-            className="animate-spin"
-          />
-        ) : (
-          'Checkout'
-        )}
-      </button>
+        isLoading={isLoading}
+        text="Confirm Order"
+      />
     </article>
   )
 }
