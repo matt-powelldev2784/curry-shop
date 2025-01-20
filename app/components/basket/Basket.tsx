@@ -7,7 +7,7 @@ import { CartItem, useCartContext } from '@/app/context/CartContext'
 import OrderItem from './BasketItem'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { usePostRequest } from '@/app/lib/useApi'
+import { usePostRequest } from '@/app/lib/clientApiHooks'
 import Error from '../error/Error'
 import Button from '@/app/ui/button/Button'
 
