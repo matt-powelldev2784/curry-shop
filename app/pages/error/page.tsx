@@ -3,18 +3,16 @@ import Image from 'next/image'
 import errorIcon from '../../assets/icons/error.png'
 import Link from 'next/link'
 
-type ErrorProps = {
-  errorMessage: string
-}
 
-const ServerErrorPage = ({ errorMessage }: ErrorProps) => {
+
+const ServerErrorPage = () => {
   return (
     <article className="flexCol w-full h-full px-4 md:mt-8 ">
       <div className="flex flex-col items-center justify-center p-4 pt-8">
         <Image src={errorIcon} width={75} height={75} alt="" />
 
         <p className="font-bold text-xl text-center text-white bg-[#ff0000] p-2 px-10 mt-8 rounded">
-          {errorMessage || 'Server Error'}
+          {'Server Error'}
         </p>
 
         <Link
@@ -29,3 +27,4 @@ const ServerErrorPage = ({ errorMessage }: ErrorProps) => {
 }
 
 export default ServerErrorPage
+
