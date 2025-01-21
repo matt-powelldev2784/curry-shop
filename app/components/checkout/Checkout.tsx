@@ -5,7 +5,9 @@ import { useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js'
 import cardIcon from '../../assets/icons/payment_pink.png'
 import Image from 'next/image'
 import { useCartContext } from '@/app/context/CartContext'
-import { postRequest } from '@/app/lib/apiCallUtils'
+import { postRequest } from '@/app/lib/serverApiFunctions'
+import Button from '@/app/ui/button/Button'
+import { useSearchParams } from 'next/navigation'
 
 type ClientSecret = {
   clientSecret: string
@@ -22,6 +24,8 @@ const CheckoutPage = () => {
     style: 'currency',
     currency: 'GBP',
   })
+  const searchParams = useSearchParams()
+  const orderId = searchParams.get('orderId')
 
   useEffect(() => {
     const createPaymentIntent = async () => {
@@ -56,7 +60,7 @@ const CheckoutPage = () => {
       elements,
       clientSecret,
       confirmParams: {
-        return_url: `${domain}/pages/payment-success?amount=${orderTotal}`,
+        return_url: `${domain}/pages/payment-success?amount=${orderTotal}&orderId=${orderId}`,
       },
     })
 
@@ -107,12 +111,11 @@ const CheckoutPage = () => {
 
       {errorMessage && <div>{errorMessage}</div>}
 
-      <button
+      <Button
         disabled={!stripe || loading}
-        className="h-[40px] w-[300px] text-white bg-twBlack my-5"
-      >
-        {!loading ? `Pay ${orderTotalText}` : 'Processing...'}
-      </button>
+        isLoading={loading}
+        text={`Pay ${orderTotalText}`}
+      />
     </form>
   )
 }

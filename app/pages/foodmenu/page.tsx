@@ -126,10 +126,7 @@ const FoodMenuPage = async () => {
       </div>
 
       <div className="flex flex-col items-start lg:w-5/12 mt-6 mr-20 sm:hidden md:hidden lg:block">
-        <Basket
-          basketTitle="Basket Items"
-          onConfirmOrderRoute="/pages/checkout"
-        />
+        <Basket />
       </div>
     </section>
   )

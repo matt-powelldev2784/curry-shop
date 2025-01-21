@@ -1,57 +1,55 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import cartIcon from '../../assets/icons/cart_pink.png'
 import Image from 'next/image'
 import { CartItem, useCartContext } from '@/app/context/CartContext'
 import OrderItem from './BasketItem'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { postRequest } from '@/app/lib/apiCallUtils'
-import { apiResponseHasError } from '@/app/lib/apiResponseHasError'
-import Error from '../error/Error'
+import { usePostRequest } from '@/app/lib/clientApiHooks'
+import Error from '../error/ClientError'
+import Button from '@/app/ui/button/Button'
 
-type BasketProps = {
-  basketTitle: string
-  onConfirmOrderRoute: string
-}
-
-const Basket = ({ basketTitle, onConfirmOrderRoute }: BasketProps) => {
+const Basket = () => {
   const router = useRouter()
   const { data: session } = useSession()
-  const { groupedCartItems, orderTotal } = useCartContext()
-  const [orderError, setOrderError] = useState(false)
+  const { groupedCartItems, orderTotal, cartItems } = useCartContext()
+  const { postRequest, data, error, isLoading } = usePostRequest()
 
   const onConfirmOrder = async () => {
     if (!groupedCartItems.length) return
+
     if (!session) {
+      localStorage.setItem('savedCartItems', JSON.stringify(cartItems))
       return router.push('/pages/login')
     }
 
-    const order = await postRequest('/api/add-order-to-db', {
-      groupedCartItems,
-      orderTotal,
+    await postRequest({
+      url: '/api/add-order-to-db',
+      body: {
+        groupedCartItems,
+        orderTotal,
+      },
     })
-
-    if (apiResponseHasError(order)) {
-      setOrderError(true)
-      return
-    }
-
-    router.push(onConfirmOrderRoute)
   }
 
-  if (orderError) {
+  if (error) {
     return (
       <Error errorMessage="There was an error processing your order.  Please try again."></Error>
     )
+  }
+
+  if (data) {
+    const order = data as { id: string }
+    router.push(`/pages/checkout?orderId=${order.id}`)
   }
 
   return (
     <article className="flexCol w-full max-w-[700px] md:rounded-3xl md:border-2 md:border-twPink px-4 md:mt-8 ">
       <div className="flex flex-col items-center justify-center p-4 pt-8">
         <Image src={cartIcon} width={75} height={75} alt="" />
-        <h1 className="p-2 text-3xl text-black">{basketTitle}</h1>
+        <h1 className="p-2 text-3xl text-black">Checkout</h1>
       </div>
 
       <div className="w-full">
@@ -94,12 +92,12 @@ const Basket = ({ basketTitle, onConfirmOrderRoute }: BasketProps) => {
         </div>
       </div>
 
-      <button
-        className="h-[40px] w-[300px] text-white bg-twBlack my-5"
+      <Button
         onClick={onConfirmOrder}
-      >
-        Checkout
-      </button>
+        isLoading={isLoading}
+        text="Confirm Order"
+        disabled={isLoading}
+      />
     </article>
   )
 }

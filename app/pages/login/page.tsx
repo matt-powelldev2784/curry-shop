@@ -7,7 +7,7 @@ export default function Login() {
       <form
         action={async () => {
           'use server'
-          await signIn('github', { redirectTo: '/pages/logout' })
+          await signIn('github', { redirectTo: '/pages/foodmenu' })
         }}
       >
         <button type="submit" className="p-2 bg-red-500">

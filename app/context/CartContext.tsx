@@ -76,6 +76,12 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     setCartItems([])
   }
 
+  const savedCartItems = localStorage.getItem('savedCartItems')
+  if (savedCartItems) {
+    setCartItems(JSON.parse(savedCartItems))
+    localStorage.removeItem('savedCartItems')
+  }
+
   return (
     <CartContext.Provider
       value={{
