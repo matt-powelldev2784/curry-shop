@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { auth } from '@/auth'
-import { prisma } from '@/prisma/prisma'
+import prisma from '@/prisma/prisma'
 
 export const POST = auth(async (req) => {
   try {

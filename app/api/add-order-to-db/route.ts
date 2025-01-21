@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { auth } from '@//auth'
 import { isValidCartItem } from '@/app/lib/isValidCartItem'
-import { prisma } from '@/prisma/prisma'
+import prisma from '@/prisma/prisma'
 import type { Prisma } from '@prisma/client'
 
 export const POST = auth(async (req) => {
