@@ -25,7 +25,7 @@ const MobileBasketFooter = () => {
   return (
     <div className="fixed bottom-0 flex flex-row justify-between z-20 w-screen gap-2 bg-twDarkGrey px-3 py-2 text-twWhite lg:hidden">
       <p className="w-20 bg-twPink text-center md:mx-4 font-bold flexRow">
-        {groupedCartItems.length}
+        {cartItems.length}
       </p>
       <p onClick={onConfirmOrder} className="bg-twPink p-2 font-bold">
         Checkout
