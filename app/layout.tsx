@@ -47,6 +47,10 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
           <CartProvider>
             <DesktopNavigation />
             <MobileNavigation />
+
+            {/* Add a div keep page content below fixed navigation bar */}
+            <div className="sm:h-12 md:h-16"></div>
+
             {children}
           </CartProvider>
         </SessionProvider>
