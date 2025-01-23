@@ -1,19 +1,19 @@
-import { signOut } from '@/auth'
+'use client'
 
-const Logout = async () => {
+import { signOut } from 'next-auth/react'
+
+const Logout = () => {
   return (
     <div className="flex flex-col items-center">
       <p>Logout Page</p>
-      <form
-        action={async () => {
-          'use server'
-          await signOut({ redirectTo: '/' })
-        }}
+
+      <button
+        type="submit"
+        onClick={async () => await signOut({ redirectTo: '/pages/foodmenu' })}
+        className="p-2 bg-red-500"
       >
-        <button type="submit" className="bg-blue-500 p-2">
-          Sign Out
-        </button>
-      </form>
+        Sign out
+      </button>
     </div>
   )
 }

@@ -8,5 +8,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {
     strategy: 'database',
   },
+  pages: {
+    signIn: '/pages/signin',
+    signOut: '/pages/signout',
+  },
   providers: [GitHub],
 })
