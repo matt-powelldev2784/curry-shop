@@ -4,6 +4,7 @@ import imageUrlBuilder from '@sanity/image-url'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 import { FoodMenuItem } from '@/app/components/foodMenu/foodMenuItem'
 import Basket from '@/app/components/basket/Basket'
+import MobileBasketFooter from '@/app/components/basket/MobileBasketFooter'
 
 const MENU_ITEMS_QUERY = `*[_type == "menuItems"]{ _id, name, description, price,menuItemType, image, slug }`
 
@@ -125,9 +126,13 @@ const FoodMenuPage = async () => {
         </div>
       </div>
 
+      {/* Basket is rendered for large screens only using css */}
       <div className="flex flex-col items-start lg:w-5/12 mt-6 mr-20 sm:hidden md:hidden lg:block">
         <Basket />
       </div>
+
+      {/* Basket footer is rendered for small screens only using css */}
+      <MobileBasketFooter />
     </section>
   )
 }
