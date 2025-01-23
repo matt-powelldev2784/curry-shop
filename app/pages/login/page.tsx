@@ -1,6 +1,6 @@
 import { signIn } from '@/auth'
 
-export default function Login() {
+export default async function Login() {
   return (
     <div className="flex flex-col items-center">
       <p>Login Page</p>

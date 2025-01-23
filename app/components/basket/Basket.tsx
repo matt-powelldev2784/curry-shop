@@ -13,14 +13,15 @@ import Button from '@/app/ui/button/Button'
 
 const Basket = () => {
   const router = useRouter()
-  const { data: session } = useSession()
+  const session = useSession()
+
   const { groupedCartItems, orderTotal, cartItems } = useCartContext()
   const { postRequest, data, error, isLoading } = usePostRequest()
 
   const onConfirmOrder = async () => {
     if (!groupedCartItems.length) return
 
-    if (!session) {
+    if (session.status !== 'authenticated') {
       localStorage.setItem('savedCartItems', JSON.stringify(cartItems))
       return router.push('/pages/login')
     }
@@ -33,6 +34,7 @@ const Basket = () => {
       },
     })
   }
+
 
   if (error) {
     return (
