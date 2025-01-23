@@ -55,7 +55,7 @@ const PaymentSuccess = async ({ searchParams }: PaymentSuccessProps) => {
         </h1>
         <p className="mt-5 text-xl text-center text-twBlack">
           The payment of <span className="font-bold">{paymentAmount} </span>has
-          been successful
+          been successful.
         </p>
 
         <p className="mt-5 text-xl text-twBlack">
