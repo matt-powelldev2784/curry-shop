@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 const DesktopNavigation = () => {
   return (
-    <div className="sm:hidden md:flex bg-twPink w-full flex items-center justify-between">
+    <div className="sm:hidden md:flex fixed top-0 left-0 w-full bg-twPink items-center justify-between z-50">
       <Link
         href="/"
         className="m-1 ml-4 sm:h-[39px] w-[200px] relative md:w-[250px] md:h-[56px]"

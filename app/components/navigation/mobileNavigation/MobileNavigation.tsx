@@ -6,7 +6,7 @@ import hamburgerIcon from '../../../assets/icons/hamburger.png'
 
 const MobileNavigation = () => {
   return (
-    <div className="sm:flex md:hidden bg-twPink w-full flex items-center justify-between">
+    <div className="sm:flex md:hidden fixed top-0 left-0 z-50 bg-twPink w-full flex items-center justify-between">
       <Link
         href="/"
         className="m-1 ml-4 sm:h-[39px] w-[200px] relative md:w-[250px] md:h-[56px]"
