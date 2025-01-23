@@ -50,15 +50,19 @@ const PaymentSuccess = async ({ searchParams }: PaymentSuccessProps) => {
     <section className="flex items-start justify-center w-full min-h-screen min-w-[320px] pb-20 bg-twLightGrey">
       <article className="flexCol md:rounded-3xl md:border-2 md:border-twPink p-8 md:mt-8">
         <Image src={deliveryIcon} width={150} height={125} alt="" />
-        <h1 className="p-2 text-center text-3xl">ORDER CONFIRMED</h1>
-        <p className="mt-5 text-xl text-center">
+        <h1 className="p-2 text-center text-3xl text-twBlack">
+          ORDER CONFIRMED
+        </h1>
+        <p className="mt-5 text-xl text-center text-twBlack">
           The payment of <span className="font-bold">{paymentAmount} </span>has
           been successful
         </p>
 
-        <p className="mt-5 text-xl">Your order number is: {userFriendlyId}</p>
+        <p className="mt-5 text-xl text-twBlack">
+          Your order number is: {userFriendlyId}
+        </p>
 
-        <p className="m-5 text-center text-xl">
+        <p className="m-5 text-center text-xl text-twBlack">
           An email confirmation has been sent to {session?.user?.email}
         </p>
 
