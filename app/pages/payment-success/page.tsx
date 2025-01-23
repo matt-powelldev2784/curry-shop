@@ -2,9 +2,8 @@ import Image from 'next/image'
 import deliveryIcon from '@/app/assets/icons/delivery_pink.png'
 import curryClubLogo from '@/app/assets/curry_club_logo_pink.png'
 import { auth } from '@/auth'
-import { postRequest } from '@/app/lib/serverApiFunctions'
-import ServerError from '@/app/components/error/ServerError'
 import { redirect } from 'next/navigation'
+import prisma from '@/prisma/prisma'
 
 type SearchParams = Promise<{ amount: string; orderId: string }>
 
@@ -12,16 +11,30 @@ type PaymentSuccessProps = {
   searchParams: SearchParams
 }
 
-type ConfirmedOrder = {
-  userFriendlyId: string
-  error: string
+const confirmOrder = async (orderId: string) => {
+  try {
+    const confirmedOrder = await prisma.order.update({
+      where: {
+        id: orderId,
+      },
+      data: {
+        orderConfirmed: true,
+      },
+    })
+
+    if (!confirmedOrder) {
+      redirect('/pages/error')
+    }
+
+    return confirmedOrder
+  } catch (error) {
+    console.error('Internal Error:', error)
+    redirect('/pages/error')
+  }
 }
 
 const PaymentSuccess = async ({ searchParams }: PaymentSuccessProps) => {
   const session = await auth()
-  if (!session) {
-    redirect('/pages/error')
-  }
 
   const { amount, orderId } = await searchParams
   const paymentAmount = parseFloat(amount).toLocaleString('en-GB', {
@@ -29,16 +42,9 @@ const PaymentSuccess = async ({ searchParams }: PaymentSuccessProps) => {
     currency: 'GBP',
   })
 
-  const domain = process.env.NEXT_PUBLIC_DOMAIN
-  const confirmedOrder = (await postRequest(`${domain}/api/confirm-order`, {
-    orderId,
-  })) as ConfirmedOrder
+  const confirmedOrder = await confirmOrder(orderId)
   const order = confirmedOrder
   const userFriendlyId = order.userFriendlyId
-
-  if (confirmedOrder.error) {
-    return <ServerError errorMessage={confirmedOrder.error} />
-  }
 
   return (
     <section className="flex items-start justify-center w-full min-h-screen min-w-[320px] pb-20 bg-twLightGrey">
