@@ -1,19 +1,46 @@
 import { signIn } from '@/auth'
+import Image from 'next/image'
+import loginIcon from '@/app/assets/icons/login.png'
+import gitHubLogo from '@/app/assets/icons/github.png'
 
-export default async function Login() {
+type SearchParams = Promise<{ loginReason: string }>
+
+type LoginProps = {
+  searchParams: SearchParams
+}
+
+export default async function Login({ searchParams }: LoginProps) {
+  const { loginReason } = await searchParams
+
   return (
-    <div className="flex flex-col items-center">
-      <p>Login Page</p>
+    <section className="w-full flexCol">
       <form
+        className="flexCol w-full max-w-[700px] md:rounded-3xl md:border-2 md:border-twPink px-4 md:mt-8"
         action={async () => {
           'use server'
           await signIn('github', { redirectTo: '/pages/foodmenu' })
         }}
       >
-        <button type="submit" className="p-2 bg-red-500">
-          Sign in
+        <Image
+          src={loginIcon}
+          width={75}
+          height={75}
+          alt="Person icon"
+          className="m-4 mt-8"
+        />
+
+        <p className="font-bold text-3xl">LOGIN</p>
+
+        {loginReason && <p className="text-lg">{loginReason}</p>}
+
+        <button
+          type="submit"
+          className="flexRow gap-4 h-[50px] w-[300px] text-white text-lg font-bold bg-twBlack my-10 rounded active:bg-black/75"
+        >
+          <Image src={gitHubLogo} width={30} height={30} alt="github logo" />
+          Sign in with GitHub
         </button>
       </form>
-    </div>
+    </section>
   )
 }
