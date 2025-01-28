@@ -23,19 +23,30 @@ const MobileBasketFooter = () => {
   }
 
   return (
-    <div className="fixed bottom-0 flex flex-row justify-between z-20 w-screen gap-2 bg-twDarkGrey px-3 py-2 text-twWhite lg:hidden">
-      <p className="w-20 bg-twPink text-center md:mx-4 font-bold flexRow">
-        {cartItems.length}
-      </p>
-      <p onClick={onConfirmOrder} className="bg-twPink p-2 font-bold">
-        Checkout
-      </p>
-      <p className="bg-twPink p-2 md:mx-4 font-bold w-20 flexRow">
-        {orderTotal.toLocaleString('en-GB', {
-          style: 'currency',
-          currency: 'GBP',
-        })}
-      </p>
+    <div className="fixed bottom-0 w-full z-20 bg-twPink px-3 py-2 text-twWhite lg:hidden">
+      <div className="flex flex-row justify-between items-center w-[98%]">
+        <div className="w-1/3">
+          <p className="w-8 bg-[#951b4c] text-center font-bold rounded">
+            {cartItems.length}
+          </p>
+        </div>
+
+        <button
+          onClick={onConfirmOrder}
+          className="bg-twBlack p-2 font-bold rounded w-1/3"
+        >
+          Checkout
+        </button>
+
+        <div className="w-1/3">
+          <p className="bg-twPink  font-bold rounded text-right">
+            {orderTotal.toLocaleString('en-GB', {
+              style: 'currency',
+              currency: 'GBP',
+            })}
+          </p>
+        </div>
+      </div>
     </div>
   )
 }
