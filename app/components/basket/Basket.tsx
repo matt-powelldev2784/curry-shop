@@ -20,6 +20,7 @@ const Basket = () => {
   const { postRequest, data, error, isLoading } = usePostRequest()
   const savedCartItems = localStorage.getItem('savedCartItems')
 
+  // store cart items to persist context for unauthenticated users
   useEffect(() => {
     if (savedCartItems) {
       setCartItems(JSON.parse(savedCartItems))
