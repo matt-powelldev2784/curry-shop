@@ -19,6 +19,7 @@ export type CartItem = {
 
 type CartContextType = {
   cartItems: CartItem[]
+  setCartItems: Dispatch<SetStateAction<CartItem[]>>
   addToCart: (item: CartItem) => void
   removeFromCart: (id: string) => void
   groupedCartItems: CartItem[]
@@ -76,16 +77,11 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     setCartItems([])
   }
 
-  const savedCartItems = localStorage.getItem('savedCartItems')
-  if (savedCartItems) {
-    setCartItems(JSON.parse(savedCartItems))
-    localStorage.removeItem('savedCartItems')
-  }
-
   return (
     <CartContext.Provider
       value={{
         cartItems,
+        setCartItems,
         addToCart,
         removeFromCart,
         groupedCartItems,

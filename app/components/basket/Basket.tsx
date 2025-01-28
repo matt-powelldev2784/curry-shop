@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import cartIcon from '../../assets/icons/cart_pink.png'
 import Image from 'next/image'
 import { CartItem, useCartContext } from '@/app/context/CartContext'
@@ -15,8 +15,17 @@ const Basket = () => {
   const router = useRouter()
   const session = useSession()
 
-  const { groupedCartItems, orderTotal, cartItems } = useCartContext()
+  const { groupedCartItems, orderTotal, cartItems, setCartItems } =
+    useCartContext()
   const { postRequest, data, error, isLoading } = usePostRequest()
+  const savedCartItems = localStorage.getItem('savedCartItems')
+
+  useEffect(() => {
+    if (savedCartItems) {
+      setCartItems(JSON.parse(savedCartItems))
+      localStorage.removeItem('savedCartItems')
+    }
+  }, [setCartItems, savedCartItems])
 
   const onConfirmOrder = async () => {
     if (!groupedCartItems.length) return
@@ -34,7 +43,6 @@ const Basket = () => {
       },
     })
   }
-
 
   if (error) {
     return (
