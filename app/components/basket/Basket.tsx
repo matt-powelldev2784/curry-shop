@@ -32,7 +32,8 @@ const Basket = () => {
 
     if (session.status !== 'authenticated') {
       localStorage.setItem('savedCartItems', JSON.stringify(cartItems))
-      return router.push('/pages/login')
+      const loginText = 'Please login to complete your order'
+      return router.push(`/pages/login?loginReason=${loginText}`)
     }
 
     await postRequest({

@@ -12,7 +12,7 @@ interface ButtonProps {
 const Button = ({ onClick, isLoading, text, disabled }: ButtonProps) => {
   return (
     <button
-      className="h-[40px] w-[300px] text-white bg-twBlack my-5 flexCol"
+      className="h-[40px] w-[300px] text-white bg-twBlack my-5 flexCol active:bg-black/75"
       onClick={onClick}
       disabled={disabled}
     >
