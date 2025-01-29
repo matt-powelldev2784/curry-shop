@@ -15,7 +15,7 @@ export default async function Login({ searchParams }: LoginProps) {
   return (
     <section className="w-full flex flex-col items-center bg-twLightGrey min-h-screen">
       <form
-        className="flexCol w-full max-w-[700px] md:rounded-3xl md:border-2 md:border-twPink px-4 md:mt-8"
+        className="flexCol w-full max-w-[700px] md:rounded-3xl md:border-2 md:border-twPink px-4 md:mt-8 text-twBlack"
         action={async () => {
           'use server'
           await signIn('github', { redirectTo: '/pages/foodmenu' })
@@ -29,9 +29,9 @@ export default async function Login({ searchParams }: LoginProps) {
           className="m-4 mt-8"
         />
 
-        <p className="font-bold text-3xl">LOGIN</p>
+        <p className="font-bold text-3xl text-twBlack">LOGIN</p>
 
-        {loginReason && <p className="text-lg">{loginReason}</p>}
+        {loginReason && <p className="text-lg text-twBlack">{loginReason}</p>}
 
         <button
           type="submit"
