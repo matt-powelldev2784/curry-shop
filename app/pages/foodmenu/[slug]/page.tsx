@@ -40,8 +40,10 @@ const MenuItem = async (props: MenuItemParams) => {
         )}
 
         <div className="max-w-[550px] mt-2">
-          <h1 className="text-4xl font-bold text-center">{menuItem.name}</h1>
-          <p className="text-center">
+          <h1 className="text-4xl font-bold text-center text-twBlack">
+            {menuItem.name}
+          </h1>
+          <p className="text-center text-twBlack">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been industry standard dummy text ever
             since the 1500s, when an unknown printer took a galley of type and
