@@ -2,8 +2,8 @@ import { type SanityDocument } from 'next-sanity'
 import imageUrlBuilder from '@sanity/image-url'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 import { sanityClient } from '@/app/sanity/client'
-import Link from 'next/link'
 import Image from 'next/image'
+import { redirect } from 'next/navigation'
 
 const MENU_ITEM_QUERY = `*[_type == "menuItems" && slug.current == $slug][0]`
 
@@ -28,24 +28,31 @@ const MenuItem = async (props: MenuItemParams) => {
   const menuItemImageUrl = urlFor(menuItem.image)?.width(550).height(310).url()
 
   return (
-    <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-4">
-      <Link href="/pages/menu/" className="hover:underline">
-        ← Back to menu
-      </Link>
-      {menuItemImageUrl && (
-        <Image
-          src={menuItemImageUrl}
-          alt={menuItem.name}
-          className="aspect-video rounded-xl"
-          width="550"
-          height="310"
-        />
-      )}
-      <h1 className="text-4xl font-bold mb-8">{menuItem.title}</h1>
-      <div className="prose">
-        <p>{menuItem.description}</p>
-      </div>
-    </main>
+    <section className="w-full min-h-screen flex flex-col items-center bg-twLightGrey">
+      <article className="w-full max-w-3xl flexCol mt-8 sm:px-4">
+        {menuItemImageUrl && (
+          <Image
+            src={menuItemImageUrl}
+            alt={menuItem.name}
+            className="aspect-video rounded-xl"
+            width="550"
+            height="310"
+          />
+        )}
+
+        <div className="max-w-[550px] mt-2">
+          <h1 className="text-4xl font-bold text-center">{menuItem.name}</h1>
+          <p className="text-center">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been industry standard dummy text ever
+            since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only
+            five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged.
+          </p>
+        </div>
+      </article>
+    </section>
   )
 }
 
