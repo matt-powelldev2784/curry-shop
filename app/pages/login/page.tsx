@@ -13,7 +13,7 @@ export default async function Login({ searchParams }: LoginProps) {
   const { loginReason } = await searchParams
 
   return (
-    <section className="w-full flexCol bg-twLightGrey">
+    <section className="w-full flex flex-col items-center bg-twLightGrey min-h-screen">
       <form
         className="flexCol w-full max-w-[700px] md:rounded-3xl md:border-2 md:border-twPink px-4 md:mt-8"
         action={async () => {
