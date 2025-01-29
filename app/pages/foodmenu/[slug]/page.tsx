@@ -3,7 +3,6 @@ import imageUrlBuilder from '@sanity/image-url'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 import { sanityClient } from '@/app/sanity/client'
 import Image from 'next/image'
-import { redirect } from 'next/navigation'
 
 const MENU_ITEM_QUERY = `*[_type == "menuItems" && slug.current == $slug][0]`
 
