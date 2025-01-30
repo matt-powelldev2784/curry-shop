@@ -31,7 +31,7 @@ export default function Home() {
         </div>
 
         <Link
-          className="bg-twPink text-xl rounded-lg p-4 mt-10 text-twWhite"
+          className="bg-twPink text-xl rounded-lg p-4 mt-10 text-twWhite active:bg-twPink/75"
           href={'/pages/foodmenu'}
         >
           View Food Menu
