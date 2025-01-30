@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import CurryClubLogo from '../../../assets/curry_club_logo.png'
-import hamburgerIcon from '../../../assets/icons/hamburger.png'
+import HamburgerButton from './HamburgerButton'
 
 const MobileNavigation = () => {
   return (
@@ -20,9 +20,7 @@ const MobileNavigation = () => {
       </Link>
 
       <nav>
-        <Link href="/pages/mobileNavigation" className="absolute top-3 right-4">
-          <Image src={hamburgerIcon} width={25} height={25} alt="Close" />
-        </Link>
+        <HamburgerButton />
       </nav>
     </div>
   )
