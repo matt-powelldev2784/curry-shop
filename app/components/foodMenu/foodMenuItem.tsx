@@ -41,7 +41,7 @@ export const FoodMenuItem = ({
         <div className="flex grow items-end">
           <button
             type="button"
-            className="bg-twPink text-secondaryWhite px-2 py-1 cursor-pointer bottom-0 rounded text-white text-base"
+            className="bg-twPink text-secondaryWhite px-2 py-1 cursor-pointer bottom-0 rounded text-white text-base active:bg-twPink/75"
             onClick={onSelectMenuItem}
           >
             Select
