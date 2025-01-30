@@ -2,6 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import CurryClubLogo from '../../../assets/curry_club_logo.png'
 import Link from 'next/link'
+import LoginLogoutButton from './LoginLogoutButton'
 
 const DesktopNavigation = () => {
   return (
@@ -25,7 +26,7 @@ const DesktopNavigation = () => {
           </li>
 
           <li>
-            <Link href="/pages/login">LOGIN</Link>
+            <LoginLogoutButton />
           </li>
 
           <li>

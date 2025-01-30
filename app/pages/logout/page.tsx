@@ -1,12 +1,9 @@
 'use client'
 
-import { useCartContext } from '@/app/context/CartContext'
 import { signOut } from 'next-auth/react'
 
 const Logout = () => {
-  const { cartItems } = useCartContext()
   const onSignOut = async () => {
-    localStorage.setItem('savedCartItems', JSON.stringify(cartItems))
     await signOut({ redirectTo: '/pages/foodmenu' })
   }
 
