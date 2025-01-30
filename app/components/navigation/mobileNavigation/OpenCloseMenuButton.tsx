@@ -22,7 +22,7 @@ const OpenCloseMenuButton = () => {
   return (
     <button onClick={handleMenuClick} className="absolute top-3 right-4">
       {isMobileNavigation ? (
-        <Image src={closeIcon} width={25} height={25} alt="close menu" />
+        <Image src={closeIcon} width={28} height={28} alt="close menu" />
       ) : (
         <Image src={hamburgerIcon} width={25} height={25} alt="open menu" />
       )}
