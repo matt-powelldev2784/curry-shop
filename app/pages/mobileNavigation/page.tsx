@@ -1,3 +1,4 @@
+import LoginLogoutButton from '@/app/components/navigation/desktopNavigation/LoginLogoutButton'
 import Link from 'next/link'
 import React from 'react'
 
@@ -10,7 +11,7 @@ const MobileNavigationPage = () => {
         </li>
 
         <li>
-          <Link href="/pages/login">LOGIN</Link>
+          <LoginLogoutButton />
         </li>
 
         <li>
