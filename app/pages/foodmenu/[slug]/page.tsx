@@ -3,6 +3,7 @@ import imageUrlBuilder from '@sanity/image-url'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 import { sanityClient } from '@/app/sanity/client'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const MENU_ITEM_QUERY = `*[_type == "menuItems" && slug.current == $slug][0]`
 
@@ -52,6 +53,13 @@ const MenuItem = async (props: MenuItemParams) => {
             remaining essentially unchanged.
           </p>
         </div>
+
+        <Link
+          className="h-[40px] w-[300px] text-white bg-twPink my-5 flexCol rounded-lg active:bg-black/75"
+          href="/pages/foodmenu"
+        >
+          Back to Food Menu
+        </Link>
       </article>
     </section>
   )
