@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import CurryClubLogo from '../../../assets/curry_club_logo.png'
-import HamburgerButton from './HamburgerButton'
+import OpenCloseMenuButton from './OpenCloseMenuButton'
 
 const MobileNavigation = () => {
   return (
@@ -20,7 +20,7 @@ const MobileNavigation = () => {
       </Link>
 
       <nav>
-        <HamburgerButton />
+        <OpenCloseMenuButton />
       </nav>
     </div>
   )

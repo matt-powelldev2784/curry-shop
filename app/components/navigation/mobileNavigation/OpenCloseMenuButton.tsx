@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import closeIcon from '../../../assets/icons/x_square.png'
 
-const HamburgerButton = () => {
+const OpenCloseMenuButton = () => {
   const router = useRouter()
   const pathname = usePathname()
   const isMobileNavigation = pathname === '/pages/mobileNavigation'
@@ -30,4 +30,4 @@ const HamburgerButton = () => {
   )
 }
 
-export default HamburgerButton
+export default OpenCloseMenuButton
