@@ -54,7 +54,7 @@ const OrdersList = async ({ searchParams }: OrderListProps) => {
 
   return (
     <section className="flex items-start justify-center w-full min-h-screen min-w-[320px] pb-20 bg-twLightGrey">
-      <article className="flexCol md:rounded-3xl md:border-2 md:border-twPink sm:p-2 sm:w-full md:w-[800px] md:p-8 md:mt-8">
+      <article className="flexCol md:rounded-3xl md:border-2 md:border-twPink sm:p-2 sm:w-full md:w-[800px] md:p-8 sm:mt-6 md:mt-8">
         <Image src={ordersIcon} width={75} height={75} alt="" />
         <h1 className="p-2 text-3xl text-black">Order History</h1>
 
@@ -68,13 +68,20 @@ const OrdersList = async ({ searchParams }: OrderListProps) => {
                 key={order.id}
               >
                 <div className="flex flex-col items-start justify-start w-full sm:ml-2 md:ml-4">
-                  <p className="text-twWhite">
-                    Order date:{' '}
-                    {new Date(order.createdAt).toLocaleDateString('en-GB')}
+                  <p className="text-twWhite flex flex-row gap-1">
+                    <span className="text-twWhite sm:hidden md:block">
+                      Order date:
+                    </span>
+
+                    <span className="font-bold text-twWhite sm:font-normal md:font-bold">
+                      {new Date(order.createdAt).toLocaleDateString('en-GB')}
+                    </span>
                   </p>
 
-                  <p className="text-twWhite">
-                    Total Price:{' '}
+                  <p className="text-twWhite flex flex-row gap-1">
+                    <span className="text-twWhite sm:hidden md:block">
+                      Total Price:
+                    </span>
                     <span className="font-bold text-twWhite">
                       {totalPrice.toLocaleString('en-GB', {
                         style: 'currency',
