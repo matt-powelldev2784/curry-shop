@@ -36,6 +36,25 @@ const getOrders = async (
   }
 }
 
+const getTotalOrdersCount = async (userId: string) => {
+  try {
+    const count = await prisma.order.count({
+      where: {
+        userId,
+      },
+    })
+
+    if (!count) {
+      redirect('/pages/error')
+    }
+
+    return count
+  } catch (error) {
+    console.error('Internal Error:', error)
+    redirect('/pages/error')
+  }
+}
+
 type SearchParams = { page: string }
 
 type OrderListProps = {
@@ -51,6 +70,9 @@ const OrdersList = async ({ searchParams }: OrderListProps) => {
   const userId = session.user.id
   const page = parseInt(searchParams.page || '0', 10)
   const orders = await getOrders(userId, page * 5, 5)
+
+  const totalOrdersCount = await getTotalOrdersCount(userId)
+  const lastPageOfOrders = totalOrdersCount > (page + 1) * 5
 
   return (
     <section className="flex items-start justify-center w-full min-h-screen min-w-[320px] pb-20 bg-twLightGrey">
@@ -112,7 +134,7 @@ const OrdersList = async ({ searchParams }: OrderListProps) => {
             </Link>
           )}
 
-          {orders.length === 5 && (
+          {lastPageOfOrders && (
             <Link
               href={`/pages/orders?page=${page + 1}`}
               className="bg-twBlack text-white p-2 rounded"
