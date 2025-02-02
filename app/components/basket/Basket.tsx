@@ -8,7 +8,7 @@ import BasketItem from './BasketItem'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { usePostRequest } from '@/app/lib/clientApiHooks'
-import Error from '../error/ClientError'
+import ClientError from '../error/ClientError'
 import Button from '@/app/ui/button/Button'
 
 const Basket = () => {
@@ -48,12 +48,12 @@ const Basket = () => {
 
   if (error) {
     return (
-      <Error errorMessage="There was an error processing your order.  Please try again."></Error>
+      <ClientError errorMessage="There was an error processing your order. Please try again."></ClientError>
     )
   }
 
   if (data) {
-    const order = data as { id: string }
+    const order = data as { id: string } // if data is returned, it will be an order object
     router.push(`/pages/checkout?orderId=${order.id}`)
   }
 

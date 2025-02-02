@@ -2,10 +2,11 @@ import Image from 'next/image'
 import React from 'react'
 import CurryClubLogo from '../../../assets/curry_club_logo.png'
 import Link from 'next/link'
-import LoginLogoutButton from './LoginLogoutButton'
-import OrderHistoryButton from './OrderHistoryButton'
+import { auth } from '@/auth'
 
-const DesktopNavigation = () => {
+const DesktopNavigation = async () => {
+  const session = await auth()
+
   return (
     <div className="sm:hidden md:flex fixed top-0 left-0 w-full bg-twPink items-center justify-between z-50">
       <Link
@@ -26,9 +27,23 @@ const DesktopNavigation = () => {
             <Link href="/pages/foodmenu">FOOD MENU</Link>
           </li>
 
-          <OrderHistoryButton />
+          {session && (
+            <li>
+              <Link href="/pages/orders?page=0">ORDER HISTORY</Link>
+            </li>
+          )}
 
-          <LoginLogoutButton />
+          {session && (
+            <li>
+              <Link href="/pages/logout">LOGOUT</Link>
+            </li>
+          )}
+
+          {!session && (
+            <li>
+              <Link href="/pages/login">LOGIN</Link>
+            </li>
+          )}
 
           <li>
             <Link

@@ -14,11 +14,14 @@ type ClientSecret = {
 }
 
 const CheckoutPage = () => {
+  // stripe state
   const stripe = useStripe()
   const elements = useElements()
   const [errorMessage, setErrorMessage] = useState<string>()
   const [clientSecret, setClientSecret] = useState('')
   const [loading, setLoading] = useState(false)
+
+  // menu items state
   const { groupedCartItems, orderTotal } = useCartContext()
   const orderTotalText = orderTotal.toLocaleString('en-GB', {
     style: 'currency',
@@ -65,8 +68,6 @@ const CheckoutPage = () => {
     })
 
     if (error) {
-      // This point is only reached if there's an immediate error when
-      // confirming the payment. Show the error to your customer (for example, payment details incomplete)
       setErrorMessage(error.message)
     } else {
       // The payment UI automatically closes with a success animation.
