@@ -44,7 +44,7 @@ const OrderPage = async ({ params }: OrderPageParams) => {
 
   return (
     <section className="flex flex-col items-center justify-start w-full min-h-screen min-w-[320px] pb-20 bg-twLightGrey">
-      <article className="flexCol w-full max-w-[700px] md:rounded-3xl md:border-2 md:border-twPink px-4 md:mt-8 pb-8">
+      <article className="flexCol w-full max-w-[700px] md:rounded-3xl md:border-2 md:border-twPink sm:px-2 md:mx-4 md:mt-8 pb-8">
         <div className="flex flex-col items-center justify-center p-4 pt-8">
           <Image src={orderIcon} width={75} height={75} alt="" />
           <h1 className="p-2 text-3xl text-black">Order Details</h1>
