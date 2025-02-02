@@ -26,9 +26,9 @@ const DesktopNavigation = () => {
             <Link href="/pages/foodmenu">FOOD MENU</Link>
           </li>
 
-          <LoginLogoutButton />
-
           <OrderHistoryButton />
+
+          <LoginLogoutButton />
 
           <li>
             <Link
