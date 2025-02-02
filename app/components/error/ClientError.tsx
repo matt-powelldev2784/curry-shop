@@ -7,7 +7,7 @@ type ErrorProps = {
   errorMessage: string
 }
 
-const Error = ({ errorMessage }: ErrorProps) => {
+const ClientError = ({ errorMessage }: ErrorProps) => {
   const router = useRouter()
 
   const handleOnClick = () => {
@@ -35,4 +35,4 @@ const Error = ({ errorMessage }: ErrorProps) => {
   )
 }
 
-export default Error
+export default ClientError
