@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import cartIcon from '../../assets/icons/cart_pink.png'
 import Image from 'next/image'
 import { CartItem, useCartContext } from '@/app/context/CartContext'
-import OrderItem from './BasketItem'
+import BasketItem from './BasketItem'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { usePostRequest } from '@/app/lib/clientApiHooks'
@@ -58,7 +58,7 @@ const Basket = () => {
   }
 
   return (
-    <article className="flexCol w-full max-w-[700px] md:rounded-3xl md:border-2 md:border-twPink px-4 md:mt-8 ">
+    <article className="flexCol w-full max-w-[700px] md:rounded-3xl md:border-2 md:border-twPink sm:px-2 md:px-4 md:mt-8 ">
       <div className="flex flex-col items-center justify-center p-4 pt-8">
         <Image src={cartIcon} width={75} height={75} alt="" />
         <h1 className="p-2 text-3xl text-black">Checkout</h1>
@@ -77,7 +77,7 @@ const Basket = () => {
       <div className="max-h-[15rem] w-full overflow-y-auto">
         {groupedCartItems.map((cartItem: CartItem) => {
           return (
-            <OrderItem
+            <BasketItem
               key={cartItem.id}
               id={cartItem.id}
               name={cartItem.name}
