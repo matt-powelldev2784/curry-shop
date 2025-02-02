@@ -3,6 +3,7 @@ import React from 'react'
 import CurryClubLogo from '../../../assets/curry_club_logo.png'
 import Link from 'next/link'
 import LoginLogoutButton from './LoginLogoutButton'
+import OrderHistoryButton from './OrderHistoryButton'
 
 const DesktopNavigation = () => {
   return (
@@ -25,9 +26,9 @@ const DesktopNavigation = () => {
             <Link href="/pages/foodmenu">FOOD MENU</Link>
           </li>
 
-          <li>
-            <LoginLogoutButton />
-          </li>
+          <LoginLogoutButton />
+
+          <OrderHistoryButton />
 
           <li>
             <Link
