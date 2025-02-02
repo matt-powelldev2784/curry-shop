@@ -55,7 +55,7 @@ const getTotalOrdersCount = async (userId: string) => {
   }
 }
 
-type SearchParams = { page: string }
+type SearchParams = Promise<{ page: string }>
 
 type OrderListProps = {
   searchParams: SearchParams
@@ -68,7 +68,8 @@ const OrdersList = async ({ searchParams }: OrderListProps) => {
   }
 
   const userId = session.user.id
-  const page = parseInt(searchParams.page || '0', 10)
+  const params = await searchParams
+  const page = parseInt(params.page || '0', 10)
   const orders = await getOrders(userId, page * 5, 5)
 
   const totalOrdersCount = await getTotalOrdersCount(userId)
