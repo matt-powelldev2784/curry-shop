@@ -53,7 +53,7 @@ const Basket = () => {
   }
 
   if (data) {
-    const order = data as { id: string }
+    const order = data as { id: string } // if data is returned, it will be an order object
     router.push(`/pages/checkout?orderId=${order.id}`)
   }
 
