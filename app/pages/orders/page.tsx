@@ -14,6 +14,7 @@ const getOrders = async (
     const orders = await prisma.order.findMany({
       where: {
         userId,
+        orderConfirmed: true,
       },
       include: {
         orderItems: true,
@@ -41,6 +42,7 @@ const getTotalOrdersCount = async (userId: string) => {
     const count = await prisma.order.count({
       where: {
         userId,
+        orderConfirmed: true,
       },
     })
 
