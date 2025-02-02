@@ -1,4 +1,5 @@
 import LoginLogoutButton from '@/app/components/navigation/desktopNavigation/LoginLogoutButton'
+import OrderHistoryButton from '@/app/components/navigation/desktopNavigation/OrderHistoryButton'
 import Link from 'next/link'
 import React from 'react'
 
@@ -10,9 +11,9 @@ const MobileNavigationPage = () => {
           <Link href="/pages/foodmenu">FOOD MENU</Link>
         </li>
 
-        <li>
-          <LoginLogoutButton />
-        </li>
+        <OrderHistoryButton />
+
+        <LoginLogoutButton />
 
         <li>
           <Link

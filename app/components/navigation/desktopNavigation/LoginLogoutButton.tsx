@@ -9,10 +9,18 @@ const LoginLogoutButton = () => {
   console.log('session.status', session.status)
 
   if (session.status === 'authenticated') {
-    return <Link href="/pages/logout">LOGOUT</Link>
+    return (
+      <li>
+        <Link href="/pages/logout">LOGOUT</Link>
+      </li>
+    )
   }
 
-  return <Link href="/pages/login">LOGIN</Link>
+  return (
+    <li>
+      <Link href="/pages/login">LOGIN</Link>
+    </li>
+  )
 }
 
 export default LoginLogoutButton
