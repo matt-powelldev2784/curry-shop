@@ -50,6 +50,8 @@ export const POST = auth(async (req) => {
       )
     }
 
+    console.log('groupedCartItems', groupedCartItems)
+
     // Create the order
     const order: Prisma.OrderCreateInput = {
       user: {
@@ -57,11 +59,14 @@ export const POST = auth(async (req) => {
       },
       totalPrice: orderTotal,
       orderItems: {
-        create: groupedCartItems.map((item) => ({
-          quantity: item.quantity,
-          name: item.name,
-          price: item.price,
-        })),
+        create: groupedCartItems.map((item) => {
+          return {
+            quantity: item.quantity,
+            name: item.name,
+            price: item.price,
+            imageUrl: item.imageUrl,
+          }
+        }),
       },
     }
 
