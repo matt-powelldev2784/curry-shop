@@ -4,7 +4,7 @@ import React from 'react'
 import CurryClubLogo from '../../../assets/curry_club_logo.png'
 import OpenCloseMenuButton from './OpenCloseMenuButton'
 
-const MobileNavigation = () => {
+const MobileNavigation = async () => {
   return (
     <div className="sm:flex md:hidden fixed top-0 left-0 z-50 bg-twPink w-full flex items-center justify-between">
       <Link
