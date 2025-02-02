@@ -68,8 +68,8 @@ const OrdersList = async ({ searchParams }: OrderListProps) => {
   }
 
   const userId = session.user.id
-  const params = await searchParams
-  const page = parseInt(params.page || '0', 10)
+  const queryParams = await searchParams
+  const page = parseInt(queryParams.page || '0', 10)
   const orders = await getOrders(userId, page * 5, 5)
 
   const totalOrdersCount = await getTotalOrdersCount(userId)
@@ -115,7 +115,7 @@ const OrdersList = async ({ searchParams }: OrderListProps) => {
                 </div>
 
                 <Link
-                  href={`/pages/order/${order.userFriendlyId}`}
+                  href={`/pages/orders/${order.id}`}
                   className="text-twWhite p-2 sm:mr-2 md:mr-4 w-48 h-full text-center bg-twBlack rounded leading-tight"
                 >
                   View Order

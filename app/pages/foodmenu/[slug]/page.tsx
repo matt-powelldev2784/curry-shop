@@ -16,12 +16,12 @@ const options = { next: { revalidate: 30 } }
 
 type MenuItemParams = { params: Promise<{ slug: string }> }
 
-const MenuItem = async (props: MenuItemParams) => {
-  const params = await props.params
+const MenuItem = async ({ params }: MenuItemParams) => {
+  const slug = await params
 
   const menuItem = await sanityClient.fetch<SanityDocument>(
     MENU_ITEM_QUERY,
-    params,
+    slug,
     options
   )
 
