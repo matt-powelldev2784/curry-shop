@@ -73,7 +73,7 @@ const OrdersList = async ({ searchParams }: OrderListProps) => {
   const orders = await getOrders({ userId, skip: page * 5, take: 5 })
 
   const totalOrdersCount = await getTotalOrdersCount(userId)
-  const lastPageOfOrders = totalOrdersCount > (page + 1) * 5
+  const isLastPageOfOrders = totalOrdersCount < (page + 1) * 5
 
   return (
     <section className="flex items-start justify-center w-full min-h-screen min-w-[320px] pb-20 bg-twLightGrey">
@@ -135,7 +135,7 @@ const OrdersList = async ({ searchParams }: OrderListProps) => {
             </Link>
           )}
 
-          {lastPageOfOrders && (
+          {!isLastPageOfOrders && (
             <Link
               href={`/pages/orders?page=${page + 1}`}
               className="bg-twBlack text-white p-2 rounded"
