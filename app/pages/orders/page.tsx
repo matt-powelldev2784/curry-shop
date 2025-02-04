@@ -5,11 +5,9 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import ordersIcon from '@/app/assets/icons/orders_pink.png'
 
-const getOrders = async (
-  userId: string,
-  skip: number = 0,
-  take: number = 5
-) => {
+type GetOrder = { userId: string; skip: number; take: number }
+
+const getOrders = async ({ userId, skip = 0, take = 5 }: GetOrder) => {
   try {
     const orders = await prisma.order.findMany({
       where: {
@@ -72,7 +70,7 @@ const OrdersList = async ({ searchParams }: OrderListProps) => {
   const userId = session.user.id
   const queryParams = await searchParams
   const page = parseInt(queryParams.page || '0', 10)
-  const orders = await getOrders(userId, page * 5, 5)
+  const orders = await getOrders({ userId, skip: page * 5, take: 5 })
 
   const totalOrdersCount = await getTotalOrdersCount(userId)
   const lastPageOfOrders = totalOrdersCount > (page + 1) * 5
