@@ -1,11 +1,5 @@
 # Curry Club Food Take Away App
 
-## To get started
-1. Clone this repository
-2. Run npm install
-3. Run npm run dev
-4. Open http://localhost:3000/ in your browser
-
 ## Deployed App
 * Deployed app can be accessed using the following link:
 https://curry-shop.vercel.app/
